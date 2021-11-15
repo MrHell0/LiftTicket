@@ -27,6 +27,12 @@ export const NETWORKS = {
     id: '4',
     url: `${process.env.RINKEBY_HOST}`,
     privKey: `${process.env.RINKEBY_PRIV_KEY}`
+  },
+  FUJI: {
+    name: 'fuji',
+    id: '43113',
+    url: `${process.env.FUJI_HOST}`,
+    privKey: `${process.env.FUJI_PRIV_KEY}`
   }
 }
 
@@ -63,7 +69,7 @@ export const CUSTOM_LOGGING = true                              /* TRUE on produ
 export const SHOW_ALL_COMPLETE_DESCRIPTIONS = false             /* FALSE on production */
 export const SHOW_VERSION = true                                /* TRUE on production */
 // export const ACTIVE_NETWORK = NETWORKS.ROPSTEN
-export const ACTIVE_NETWORK = NETWORKS.RINKEBY
-// export const ACTIVE_NETWORK = NETWORKS.LOCAL
+//export const ACTIVE_NETWORK = NETWORKS.RINKEBY
+export const ACTIVE_NETWORK = NETWORKS.FUJI
 // -----------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------

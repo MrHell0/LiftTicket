@@ -107,11 +107,14 @@ window.addEventListener('load', async() => {
 });
 
 function checkWrongNetwork(id) {
+  // this is a hack since web3.js  web3.eth.net.getId() doesn't return correct id for avax fuji and mainnet
+  const chainId = window.web3.utils.hexToNumber(window.web3.currentProvider.chainId);
+  id = chainId === id ? id : chainId;
+  
   let onWrongNetwork = false
   if(constants.ACTIVE_NETWORK.id === constants.NETWORKS.LOCAL.id) {
     onWrongNetwork = Number(id) < 1000
-  }
-  else {
+  } else {
     onWrongNetwork = Number(constants.ACTIVE_NETWORK.id) !== Number(id)
   }
 

@@ -52,10 +52,6 @@ async function exec() {
 exec();
 
 async function deployContracts(deployData) {
-  const props = {
-    gasPrice: (await web3.eth.getGasPrice()) * 10,
-    gas: 4500000
-  }
 
   let from = constants.ADDRESSES[constants.ACTIVE_NETWORK.name];
   if(!from) from = (await web3.eth.getAccounts())[0];
@@ -63,14 +59,24 @@ async function deployContracts(deployData) {
 
   // Deploy/retrieve ethernaut contract
   const Ethernaut = await ethutil.getTruffleContract(EthernautABI.default, {from})
+
+  const props = {
+    gasPrice: await web3.eth.getGasPrice() * 10,
+    gas: 4500000
+  };
+
   if(needsDeploy(deployData.ethernaut)) {
 		console.log(deployData);
     console.log(`Deploying Ethernaut.sol...`);
-    ethernaut = await Ethernaut.new(props)
-    console.log(colors.yellow(`  Ethernaut: ${ethernaut.address}`));
+    try {
+      ethernaut = await Ethernaut.new(props);
+    } catch (e) {
+      console.error(e);
+      process.exit(1);
+    }
+             console.log(colors.yellow(`  Ethernaut: ${ethernaut.address}`));
     deployData.ethernaut = ethernaut.address;
-  }
-  else {
+  } else {
     console.log('Using deployed Ethernaut.sol:', deployData.ethernaut);
     ethernaut = await Ethernaut.at(deployData.ethernaut)
     // console.log('ethernaut: ', ethernaut);
