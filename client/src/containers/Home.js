@@ -39,11 +39,7 @@ class Home extends React.Component {
 
           {/* TITLE */}
           <h2 className="title">
-            {strings.title}&nbsp;
-            <small style={{ fontSize: 10 }}>by</small>
-            <a href='https://openzeppelin.com' target="_blank" rel="noopener noreferrer">
-              <img style={{ maxWidth: '120px' }} src='../../imgs/openzeppelin-by-logo.png' alt='OpenZeppelin'/>
-            </a>
+            {strings.title}
           </h2>
           {/* INFO */}
           <div dangerouslySetInnerHTML={{ __html: strings.info }}></div>

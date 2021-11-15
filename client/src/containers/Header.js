@@ -41,12 +41,6 @@ class Header extends React.Component {
             </button>
 
             <div className="navbar-brand" style={{paddingTop: '0', paddingBottom: '0', paddingLeft: '25px', lineHeight: '49px'}}>
-              <span>
-                <a href="https://openzeppelin.com" target="_blank" rel='noopener noreferrer'>
-                  <img style={{width: '40px', height: '40px'}} src='../../imgs/openzeppelin-logo.svg' alt='OpenZeppelin'/>
-                </a>
-              </span>
-              &nbsp;
               <Link to={constants.PATH_ROOT}  style={{ textDecoration: 'none' }}>
                 <span style={{display: 'inline-block', verticalAlign: 'text-top', lineHeight: '22px'}}>{strings.ethernaut}</span>
               </Link>
