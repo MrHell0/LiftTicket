@@ -2,20 +2,20 @@ import prompt from 'prompt';
 import colors from 'colors';
 import Web3 from 'web3';
 import fs from 'fs';
-import * as ethutil from '../src/utils/ethutil.js';
-import * as constants from '../src/constants.js';
+import * as ethutil from '../../client/src/utils/ethutil.js';
+import * as constants from '../../client/src/constants.js';
 import HDWalletProvider from '@truffle/hdwallet-provider';
-import * as gamedata from '../src/gamedata/gamedata.json';
-import * as EthernautABI from 'contracts/build/contracts/Ethernaut.sol/Ethernaut.json';
+import * as gamedata from '../../client/src/gamedata/gamedata.json';
+import * as EthernautABI from '../build/contracts/Ethernaut.sol/Ethernaut.json';
 
 let web3;
 let ethernaut;
 
 const PROMPT_ON_DEVELOP = true
-const DEPLOY_DATA_PATH = `./client/src/gamedata/deploy.${constants.ACTIVE_NETWORK.name}.json`
+const DEPLOY_DATA_PATH = `../client/src/gamedata/deploy.${constants.ACTIVE_NETWORK.name}.json`
 
 async function exec() {
-
+  
   console.log(colors.cyan(`<< NETWORK: ${constants.ACTIVE_NETWORK.name} >>`).inverse)
 
   await initWeb3()
@@ -45,11 +45,16 @@ async function exec() {
     await deployContracts(deployData)
     storeDeployData(DEPLOY_DATA_PATH, deployData)
     console.log("Done");
-    process.exit();
+    return;
   }
 }
 
-exec();
+exec()
+.then(() => process.exit(0))
+  .catch(error => {
+    console.error(error);
+    process.exit(1);
+  });
 
 async function deployContracts(deployData) {
 
@@ -74,12 +79,11 @@ async function deployContracts(deployData) {
       console.error(e);
       process.exit(1);
     }
-             console.log(colors.yellow(`  Ethernaut: ${ethernaut.address}`));
+    console.log(colors.yellow(`  Ethernaut: ${ethernaut.address}`));
     deployData.ethernaut = ethernaut.address;
   } else {
     console.log('Using deployed Ethernaut.sol:', deployData.ethernaut);
     ethernaut = await Ethernaut.at(deployData.ethernaut)
-    // console.log('ethernaut: ', ethernaut);
   }
 
   // Sweep levels
@@ -90,9 +94,10 @@ async function deployContracts(deployData) {
         console.log(`Deploying ${level.levelContract}, deployId: ${level.deployId}...`);
 
         // Deploy contract
-        const LevelABI = JSON.parse(fs.readFileSync(`contracts/build/contracts/levels/${level.levelContract}/${withoutExtension(level.levelContract)}.json`, 'utf-8'))
+        const LevelABI = JSON.parse(fs.readFileSync(`./build/contracts/levels/${level.levelContract}/${withoutExtension(level.levelContract)}.json`, 'utf-8'))
         const Contract = await ethutil.getTruffleContract(LevelABI, {from})
         const contract = await Contract.new(...level.deployParams, props)
+
         console.log(colors.yellow(`  ${level.name}: ${contract.address}`));
         deployData[level.deployId] = contract.address
         console.log(colors.gray(`  storing deployed id: ${level.deployId} with address: ${contract.address}`));
@@ -122,6 +127,7 @@ function withoutExtension(str) {
 }
 
 function needsDeploy(deployAddress) {
+  console.log(`address is: ${deployAddress}`);
   if(constants.ACTIVE_NETWORK === constants.NETWORKS.LOCAL) return true
   return deployAddress === undefined || deployAddress === 'x'
 }
@@ -161,6 +167,7 @@ function loadDeployData(path) {
     return JSON.parse(fs.readFileSync(path, 'utf8'))
   }
   catch(err){
+    console.log(`err is ${err}`);
     return {}
   }
 }
