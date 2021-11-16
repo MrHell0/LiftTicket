@@ -21,7 +21,8 @@
     "typescript": "^4.4.4"
   },
   "scripts": {
-    "verify": "NODE_OPTIONS=\"-r ts-node/register\" hardhat run scripts/verify.ts --network fuji"
+    "verify": "NODE_OPTIONS=\"-r ts-node/register\" hardhat run scripts/verify.ts --network fuji",
+    "deploy-instances": "NODE_OPTIONS=\"-r ts-node/register\" npx hardhat run scripts/deployInstances.ts --network fuji"
   },
   "eslintConfig": {
     "extends": "react-app"
