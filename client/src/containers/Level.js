@@ -7,7 +7,8 @@ import MarkdownComponent from '../components/Markdown';
 import Difficulty from '../components/Difficulty';
 import * as actions from '../actions';
 import * as constants from '../constants';
-import { loadTranslations } from '../utils/translations'
+import { loadTranslations } from '../utils/translations';
+import { getExplorerUrl } from '../utils/^^';
 
 class Level extends React.Component {
   constructor() {
@@ -42,7 +43,8 @@ class Level extends React.Component {
 
     const {
       level,
-      levelCompleted
+      levelCompleted,
+      levelInstance
     } = this.props;
 
     if(!level) return null
@@ -99,7 +101,17 @@ class Level extends React.Component {
 
         {/* BUTTONS */}
         <div className="" style={{marginTop: '5px'}}>
+          {levelInstance &&
+            <a href={`https://${getExplorerUrl(constants.ACTIVE_NETWORK.name)}/address/${levelInstance.address}`} target="_blank" rel="noopener noreferrer">
+              <div style={{display: 'inline-flex'}}>
+            
+              <p><span style={{marginRight: '5px', marginLeft: '20px'}}>View contract on</span></p>
+              <p style={{paddingTop: '2px'}}><img src="../../imgs/snowtrace-logo.svg" alt="" style={{height: "20px", marginBottom: "5px"}}></img>
+              </p>
+              </div>
+            </a>
 
+          }
           { level.levelContract &&
           <div className="">
 
@@ -187,7 +199,8 @@ function mapStateToProps(state) {
     level: level,
     levels: state.gamedata.levels,
     levelCompleted: level && state.player.completedLevels[level.deployedAddress] > 0,
-    levelEmitted: level && state.contracts.levels[level.deployedAddress] !== undefined
+    levelEmitted: level && state.contracts.levels[level.deployedAddress] !== undefined,
+    levelInstance: !!level ? state.contracts.levels[level.deployedAddress] : undefined
   };
 }
 

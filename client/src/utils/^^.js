@@ -6,6 +6,10 @@ const constants = require(`../constants`)
 let language = localStorage.getItem('lang')
 let strings = loadTranslations(language)
 
+export function getExplorerUrl(networkName) {
+  return constants.ACTIVE_NETWORK.name === 'fuji' ? 'testnet.snowtrace.io' : 'snowtrace.io';
+}
+
 function interceptConsole() {
 
   // Replace console
@@ -138,7 +142,7 @@ function interceptConsole() {
       `%c⛏️ ${text} ⛏%c`,
       `color: ${negColor}; font-weight: bold; font-size: 12px; background-color: ${color};`,
       "",
-      `https://${constants.ACTIVE_NETWORK.name}.etherscan.io/tx/${txId}`
+      `https://${getExplorerUrl(constants.ACTIVE_NETWORK.name)}/tx/${txId}`
     )
   }
 
