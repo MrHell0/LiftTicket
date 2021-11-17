@@ -27,7 +27,7 @@ const setPlayerAddress = store => next => action => {
   ethutil.getBalance(action.address)
     .then(balance => {
       if(balance === '0') {
-        console.warn(`@bad ${strings.noEthersMessage}`)
+        console.warn(`@bad ${strings.noAvaxMessage}`)
       }
     })
 

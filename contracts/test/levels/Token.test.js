@@ -1,4 +1,4 @@
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 
 const TokenFactory = artifacts.require('./levels/TokenFactory.sol')
 const Token = artifacts.require('./levels/Token.sol')
@@ -8,20 +8,20 @@ const utils = require('../utils/TestUtils')
 
 contract('Token', function(accounts) {
 
-  let ethernaut
+  let liftTicket
   let level
   let owner = accounts[1]
   let player = accounts[0]
 
   before(async function() {
-    ethernaut = await Ethernaut.new();
+    liftTicket = await LiftTicket.new();
     level = await TokenFactory.new()
-    await ethernaut.registerLevel(level.address)
+    await liftTicket.registerLevel(level.address)
   });
 
   it('should allow the player to solve the level', async function() {
 
-    const instance = await utils.createLevelInstance(ethernaut, level.address, player, Token);
+    const instance = await utils.createLevelInstance(liftTicket, level.address, player, Token);
 
     // Check init balances
     let balance = new BN(await instance.balanceOf(player));
@@ -45,7 +45,7 @@ contract('Token', function(accounts) {
 
     // Check win.
     const ethCompleted = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player

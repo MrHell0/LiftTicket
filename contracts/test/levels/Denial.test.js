@@ -2,14 +2,14 @@ const Denial = artifacts.require('./levels/Denial.sol')
 const DenialFactory = artifacts.require('./levels/DenialFactory.sol')
 const DenialAttack = artifacts.require('./attacks/DenialAttack.sol')
 
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 const { BN, constants, expectEvent, expectRevert } = require('openzeppelin-test-helpers')
 const utils = require('../utils/TestUtils')
 
 
 contract('Denial', function(accounts) {
 
-  let ethernaut
+  let liftTicket
   let level
   let instance
   let player = accounts[0]
@@ -17,11 +17,11 @@ contract('Denial', function(accounts) {
   let initialDeposit = web3.utils.toWei("1",'ether');
 
   before(async function() {
-    ethernaut = await Ethernaut.new();
+    liftTicket = await LiftTicket.new();
     level = await DenialFactory.new()
-    await ethernaut.registerLevel(level.address)
+    await liftTicket.registerLevel(level.address)
     instance = await utils.createLevelInstance(
-      ethernaut, level.address, player, Denial,
+      liftTicket, level.address, player, Denial,
       {from: player, value: initialDeposit}
     )
   });
@@ -41,7 +41,7 @@ contract('Denial', function(accounts) {
       
       // make sure the factory fails
       const ethCompleted = await utils.submitLevelInstance(
-        ethernaut,
+        liftTicket,
         level.address,
         instance.address,
         player
@@ -56,7 +56,7 @@ contract('Denial', function(accounts) {
       await instance.setWithdrawPartner(denialAttack.address);
       // ensure the level is completed
       const ethCompleted = await utils.submitLevelInstance(
-        ethernaut,
+        liftTicket,
         level.address,
         instance.address,
         player

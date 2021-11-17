@@ -1,28 +1,28 @@
 const DelegationFactory = artifacts.require('./levels/DelegationFactory.sol')
 const Delegation = artifacts.require('./levels/Delegation.sol')
 
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 const { BN, constants, expectEvent, expectRevert } = require('openzeppelin-test-helpers')
 const utils = require('../utils/TestUtils')
 
 
 contract('Delegation', function(accounts) {
 
-  let ethernaut
+  let liftTicket
   let level
   let owner = accounts[1]
   let player = accounts[0]
 
   before(async function() {
-    ethernaut = await Ethernaut.new();
+    liftTicket = await LiftTicket.new();
     level = await DelegationFactory.new()
-    await ethernaut.registerLevel(level.address)
+    await liftTicket.registerLevel(level.address)
   });
 
   it('should allow the player to solve the level', async function() {
 
     // Get instance, which should be owned by the level
-    const instance = await utils.createLevelInstance(ethernaut, level.address, player, Delegation);
+    const instance = await utils.createLevelInstance(liftTicket, level.address, player, Delegation);
     // console.log(`player:`, player)
     // console.log(`factory:`, level.address)
     let owner = await instance.owner.call()
@@ -44,7 +44,7 @@ contract('Delegation', function(accounts) {
 
     // Factory check
     const ethCompleted = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player

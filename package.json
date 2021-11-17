@@ -16,10 +16,10 @@
   "scripts": {
     "test": "cd contracts && hardhat test",
     "compile:contracts": "cd contracts && hardhat clean && npx hardhat compile",
-    "deploy:contracts": "yarn compile:contracts && cd contracts && NODE_OPTIONS=\"--experimental-json-modules\" npx hardhat run scripts/deploy_contracts.mjs",
+    "deploy:contracts": "yarn compile:contracts && cd contracts && NODE_OPTIONS=\"--experimental-json-modules\" npx hardhat run scripts/deploy_contracts.mjs --network fuji",
     "network": "cd contracts && hardhat node",
-    "build:ethernaut": "yarn compile:contracts && cd client && yarn build",
-    "start:ethernaut": "cd client && yarn start",
+    "build": "yarn compile:contracts && cd client && yarn build",
+    "start": "cd client && yarn start",
     "test:contracts": "cd contracts && hardhat test"
   }
 }

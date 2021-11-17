@@ -1,22 +1,22 @@
 const PuzzleProxy  = artifacts.require('PuzzleProxy');
 const PuzzleWalletFactory = artifacts.require('PuzzleWalletFactory')
 const PuzzleWallet = artifacts.require('PuzzleWallet');
-const Ethernaut = artifacts.require('./Ethernaut.sol');
+const LiftTicket = artifacts.require('./LiftTicket.sol');
 
 const utils = require('../utils/TestUtils');
 
 contract('PuzzleWallet', function([player]) {
-  let ethernaut, level;
+  let liftTicket, level;
 
   beforeEach(async function() {
-    ethernaut = await Ethernaut.new();
+    liftTicket = await LiftTicket.new();
     level = await PuzzleWalletFactory.new();
-    await ethernaut.registerLevel(level.address);
+    await liftTicket.registerLevel(level.address);
   });
 
   it('should allow the player to solve the level', async function() {
     const instance = await utils.createLevelInstance(
-      ethernaut, level.address, player, PuzzleWallet,
+      liftTicket, level.address, player, PuzzleWallet,
       { from: player, value: web3.utils.toWei('1', 'ether') },
     );
 
@@ -57,7 +57,7 @@ contract('PuzzleWallet', function([player]) {
 
     // check that the level was completed successfully
     const ethCompleted = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player

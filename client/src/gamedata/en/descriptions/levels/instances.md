@@ -32,26 +32,26 @@ help()
 These will be super handy during gameplay.
 
 &nbsp;
-#### 4. The ethernaut contract
+#### 4. The Lift Ticket contract
 Enter the following command in the console:
 ```
-ethernaut
+liftTicket
 ```
 
 This is the game's main smart contract. You don't need to interact with it directly through the console (as this app will do that for you) but you can if you want to. Playing around with this object now is a great way to learn how to interact with the other smart contracts of the game.
 
-Go ahead and expand the ethernaut object to see what's inside.
+Go ahead and expand the liftTicket object to see what's inside.
 
 &nbsp;
 #### 5. Interact with the ABI
-`ethernaut` is a `TruffleContract` object that wraps the `Ethernaut.sol` contract that has been deployed to the blockchain.
+`liftTicket` is a `TruffleContract` object that wraps the `LiftTicket.sol` contract that has been deployed to the blockchain.
 
-Among other things, the contract's ABI exposes all of `Ethernaut.sol`'s public methods, such as `owner`. Type the following command for example:
+Among other things, the contract's ABI exposes all of `LiftTicket.sol`'s public methods, such as `owner`. Type the following command for example:
 ```
-ethernaut.owner()
+liftTicket.owner()
 ```
-###### `await ethernaut.owner()` if you're using Chrome v62.
-You can see who the owner of the ethernaut contract is, which is not you of course =D.
+###### `await liftTicket.owner()` if you're using Chrome v62.
+You can see who the owner of the liftTicket contract is, which is not you of course =D.
 
 &nbsp;
 #### 6. Get test ether
@@ -61,13 +61,13 @@ Once you see some ether in your balance, move on to the next step.
 
 &nbsp;
 #### 7. Getting a level instance
-When playing a level, you don't interact directly with the ethernaut contract. Instead, you ask it to generate a **level instance** for you. To do so, click the blue button at the bottom of the page. Go do it now and come back!
+When playing a level, you don't interact directly with the liftTicket contract. Instead, you ask it to generate a **level instance** for you. To do so, click the blue button at the bottom of the page. Go do it now and come back!
 
 You should be prompted by MetaMask to authorize the transaction. Do so, and you should see some messages in the console. Note that this is deploying a new contract in the blockchain and might take a few seconds, so please be patient when requesting new level instances!
 
 &nbsp;
 #### 8. Inspecting the contract
-Just as you did with the ethernaut contract, you can inspect this contract's ABI through the console using the `contract` variable.
+Just as you did with the liftTicket contract, you can inspect this contract's ABI through the console using the `contract` variable.
 
 &nbsp;
 #### 9. Interact with the contract to complete the level
@@ -78,7 +78,7 @@ contract.info()
 ###### `await contract.info()` if you're using Chrome v62.
 You should have all you need to complete the level within the contract.
 When you know you have completed the level, submit the contract using the orange button at the bottom of the page.
-This sends your instance back to the ethernaut, which will determine if you have completed it.
+This sends your instance back to the liftTicket, which will determine if you have completed it.
 
 
 ##### Tip: don't forget that you can always look in the contract's ABI!

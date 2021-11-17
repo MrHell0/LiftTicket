@@ -3,29 +3,29 @@ const SwappableTokenTwo = artifacts.require('SwappableTokenTwo')
 const DexTwoAttackToken = artifacts.require('DexTwoAttackToken')
 const DexTwo = artifacts.require('./levels/DexTwo.sol')
 
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 const { BN, constants, expectEvent, expectRevert } = require('openzeppelin-test-helpers')
 const utils = require('../utils/TestUtils')
 
 
 contract('DexTwo', function (accounts) {
 
-  let ethernaut
+  let liftTicket
   let level
   let owner = accounts[1]
   let player = accounts[0]
   let instance
 
   before(async function () {
-    ethernaut = await Ethernaut.new()
+    liftTicket = await LiftTicket.new()
     level = await DexTwoFactory.new()
-    await ethernaut.registerLevel(level.address)
+    await liftTicket.registerLevel(level.address)
   });
 
   it('should fail if the player didnt solve the level', async function() {
-    const instance = await utils.createLevelInstance(ethernaut, level.address, player, DexTwo)
+    const instance = await utils.createLevelInstance(liftTicket, level.address, player, DexTwo)
     const completed = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player
@@ -35,7 +35,7 @@ contract('DexTwo', function (accounts) {
   });
 
   it('should allow the player to solve the level', async function () {
-    const instance = await utils.createLevelInstance(ethernaut, level.address, player, DexTwo)
+    const instance = await utils.createLevelInstance(liftTicket, level.address, player, DexTwo)
 
     const [token1Addr, token2Addr] = await Promise.all([ instance.token1(), instance.token2() ])
     const [token1, token2] = [token1Addr, token2Addr].map((a) => new SwappableTokenTwo(a))
@@ -60,7 +60,7 @@ contract('DexTwo', function (accounts) {
 
     // Check win.
     const ethCompleted = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player

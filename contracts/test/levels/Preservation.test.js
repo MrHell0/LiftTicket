@@ -2,31 +2,31 @@ const PreservationFactory = artifacts.require('./levels/PreservationFactory.sol'
 const Preservation = artifacts.require('./levels/Preservation.sol')
 const PreservationAttack = artifacts.require('./attacks/PreservationAttack.sol')
 
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 const { BN, constants, expectEvent, expectRevert } = require('openzeppelin-test-helpers')
 const utils = require('../utils/TestUtils')
 
 
 contract('Preservation', function(accounts) {
 
-  let ethernaut
+  let liftTicket
   let level
   let owner = accounts[1]
   let player = accounts[0]
   let instance = undefined
 
   before(async function() {
-    ethernaut = await Ethernaut.new();
+    liftTicket = await LiftTicket.new();
     level = await PreservationFactory.new()
-    await ethernaut.registerLevel(level.address)
-    instance = await utils.createLevelInstance(ethernaut, level.address, player, Preservation);
+    await liftTicket.registerLevel(level.address)
+    instance = await utils.createLevelInstance(liftTicket, level.address, player, Preservation);
   });
 
   it('should not be immediately solveable', async function() {
 
     // Factory check
     const ethCompleted = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player
@@ -65,7 +65,7 @@ contract('Preservation', function(accounts) {
 
     // Factory check
     const ethCompleted = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player

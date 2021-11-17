@@ -2,7 +2,7 @@ const VaultFactory = artifacts.require('./levels/VaultFactory.sol')
 const Vault = artifacts.require('./attacks/Vault.sol')
 const VaultAttack = artifacts.require('./attacks/VaultAttack.sol')
 
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 const { BN, constants, expectEvent, expectRevert } = require('openzeppelin-test-helpers')
 const utils = require('../utils/TestUtils')
 
@@ -10,22 +10,22 @@ const utils = require('../utils/TestUtils')
 
 contract('Vault', function(accounts) {
 
-  let ethernaut
+  let liftTicket
   let level
   let owner = accounts[1]
   let player = accounts[0]
 
   before(async function() {
-    ethernaut = await Ethernaut.new();
+    liftTicket = await LiftTicket.new();
     level = await VaultFactory.new()
-    await ethernaut.registerLevel(level.address)
+    await liftTicket.registerLevel(level.address)
   });
 
   it('should fail if the player did not solve the level', async function() {
-    const instance = await utils.createLevelInstance(ethernaut, level.address, player, Vault)
+    const instance = await utils.createLevelInstance(liftTicket, level.address, player, Vault)
 
     const completed = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player
@@ -36,7 +36,7 @@ contract('Vault', function(accounts) {
 
 
   it('should allow the player to solve the level', async function() {
-    const instance = await utils.createLevelInstance(ethernaut, level.address, player, Vault)
+    const instance = await utils.createLevelInstance(liftTicket, level.address, player, Vault)
 
     const attacker = await VaultAttack.new();
     var hexStr = web3.utils.utf8ToHex(await web3.eth.getStorageAt(instance.address, 1));
@@ -45,7 +45,7 @@ contract('Vault', function(accounts) {
     await attacker.attack(instance.address, password)
 
     const completed = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player

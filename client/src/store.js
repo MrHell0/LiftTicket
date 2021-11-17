@@ -7,7 +7,7 @@ import { routerMiddleware } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
 
-import loadEthernautContract from './middlewares/loadEthernautContract'
+import loadLiftTicketContract from './middlewares/loadLiftTicketContract'
 import loadGamedata from './middlewares/loadGamedata'
 import loadLevelInstance from './middlewares/loadLevelInstance'
 import submitLevelInstance from './middlewares/submitLevelInstance'
@@ -24,7 +24,7 @@ export const history = createBrowserHistory();
 
 const middlewares = [
   loadGamedata,
-  loadEthernautContract,
+  loadLiftTicketContract,
   loadLevelInstance,
   submitLevelInstance,
   activateLevel,

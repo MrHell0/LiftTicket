@@ -2,29 +2,29 @@ const Telephone = artifacts.require('./levels/Telephone.sol')
 const TelephoneFactory = artifacts.require('./levels/TelephoneFactory.sol')
 const TelephoneAttack = artifacts.require('./attacks/TelephoneAttack.sol')
 
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 const { BN, constants, expectEvent, expectRevert } = require('openzeppelin-test-helpers')
 const utils = require('../utils/TestUtils')
 
 
 contract('Telephone', function(accounts) {
 
-  let ethernaut
+  let liftTicket
   let level
   let owner = accounts[1]
   let player = accounts[0]
 
   before(async function() {
-    ethernaut = await Ethernaut.new();
+    liftTicket = await LiftTicket.new();
     level = await TelephoneFactory.new()
-    await ethernaut.registerLevel(level.address)
+    await liftTicket.registerLevel(level.address)
   });
 
   it('should fail if the player did not solve the level', async function() {
-    const instance = await utils.createLevelInstance(ethernaut, level.address, player, Telephone)
+    const instance = await utils.createLevelInstance(liftTicket, level.address, player, Telephone)
 
     const completed = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player
@@ -35,13 +35,13 @@ contract('Telephone', function(accounts) {
 
 
   it('should allow the player to solve the level', async function() {
-    const instance = await utils.createLevelInstance(ethernaut, level.address, player, Telephone)
+    const instance = await utils.createLevelInstance(liftTicket, level.address, player, Telephone)
 
     const attacker = await TelephoneAttack.new()
     await attacker.attack(instance.address, player)
 
     const completed = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player

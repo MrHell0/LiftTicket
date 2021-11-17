@@ -1,24 +1,24 @@
 const AlienCodex = artifacts.require('./levels/AlienCodex.sol')
 const AlienCodexFactory = artifacts.require('./levels/AlienCodexFactory.sol')
 
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 const utils = require('../utils/TestUtils')
 
 
 contract('AlienCodex', function(accounts) {
 
-  let ethernaut
+  let liftTicket
   let level
   let instance
   let owner = accounts[1]
   let player = accounts[0]
 
   before(async function() {
-    ethernaut = await Ethernaut.new();
+    liftTicket = await LiftTicket.new();
     level = await AlienCodexFactory.new()
-    await ethernaut.registerLevel(level.address)
+    await liftTicket.registerLevel(level.address)
     instance = await utils.createLevelInstance(
-      ethernaut, level.address, player, AlienCodex,
+      liftTicket, level.address, player, AlienCodex,
       {from: player}
     )
   });

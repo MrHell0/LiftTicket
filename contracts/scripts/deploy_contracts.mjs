@@ -1,4 +1,4 @@
-import prompt from 'prompt';
+  import prompt from 'prompt';
 import colors from 'colors';
 import Web3 from 'web3';
 import fs from 'fs';
@@ -6,10 +6,10 @@ import * as ethutil from '../../client/src/utils/ethutil.js';
 import * as constants from '../../client/src/constants.js';
 import HDWalletProvider from '@truffle/hdwallet-provider';
 import * as gamedata from '../../client/src/gamedata/gamedata.json';
-import * as EthernautABI from '../build/contracts/Ethernaut.sol/Ethernaut.json';
+import * as LiftTicketABI from '../build/contracts/LiftTicket.sol/LiftTicket.json';
 
 let web3;
-let ethernaut;
+let liftTicket;
 
 const PROMPT_ON_DEVELOP = true
 const DEPLOY_DATA_PATH = `../client/src/gamedata/deploy.${constants.ACTIVE_NETWORK.name}.json`
@@ -25,9 +25,9 @@ async function exec() {
 
   // Determine which contracts need to be deployed.
   let count = 0;
-  if(needsDeploy(deployData.ethernaut)) {
+  if(needsDeploy(deployData.liftTicket)) {
     count++
-    console.log(colors.red(`(${count}) Will deploy Ethernaut.sol!`))
+    console.log(colors.red(`(${count}) Will deploy LiftTicket.sol!`))
   }
   gamedata.default.levels.map(level => {
     if(needsDeploy(deployData[level.deployId])) {
@@ -43,7 +43,7 @@ async function exec() {
 
   if(await confirmDeployment()) {
     await deployContracts(deployData)
-    storeDeployData(DEPLOY_DATA_PATH, deployData)
+    //storeDeployData(DEPLOY_DATA_PATH, deployData)
     console.log("Done");
     return;
   }
@@ -62,60 +62,56 @@ async function deployContracts(deployData) {
   if(!from) from = (await web3.eth.getAccounts())[0];
   console.log("FROM: ", from)
 
-  // Deploy/retrieve ethernaut contract
-  const Ethernaut = await ethutil.getTruffleContract(EthernautABI.default, {from})
+  // Deploy/retrieve liftTicket contract
+  const LiftTicket = await ethutil.getTruffleContract(LiftTicketABI.default, {from})
 
   const props = {
     gasPrice: await web3.eth.getGasPrice() * 10,
     gas: 4500000
   };
 
-  if(needsDeploy(deployData.ethernaut)) {
+  if(needsDeploy(deployData.liftTicket)) {
 		console.log(deployData);
-    console.log(`Deploying Ethernaut.sol...`);
+    console.log(`Deploying LiftTicket.sol...`);
     try {
-      ethernaut = await Ethernaut.new(props);
+      liftTicket = await LiftTicket.new(props);
     } catch (e) {
       console.error(e);
       process.exit(1);
     }
-    console.log(colors.yellow(`  Ethernaut: ${ethernaut.address}`));
-    deployData.ethernaut = ethernaut.address;
+    console.log(colors.yellow(`  LiftTicket: ${liftTicket.address}`));
+    deployData.liftTicket = liftTicket.address;
   } else {
-    console.log('Using deployed Ethernaut.sol:', deployData.ethernaut);
-    ethernaut = await Ethernaut.at(deployData.ethernaut)
+    console.log('Using deployed LiftTicket.sol:', deployData.liftTicket);
+    liftTicket = await LiftTicket.at(deployData.liftTicket)
   }
 
   // Sweep levels
-  const promises = gamedata.default.levels.map(async level => {
+  for (const level of gamedata.default.levels) {
     // console.log('level: ', level);
-    return new Promise(async resolve => {
-      if(needsDeploy(deployData[level.deployId])) {
-        console.log(`Deploying ${level.levelContract}, deployId: ${level.deployId}...`);
+    if(needsDeploy(deployData[level.deployId])) {
+      console.log(`Deploying ${level.levelContract}, deployId: ${level.deployId}...`);
 
-        // Deploy contract
-        const LevelABI = JSON.parse(fs.readFileSync(`./build/contracts/levels/${level.levelContract}/${withoutExtension(level.levelContract)}.json`, 'utf-8'))
-        const Contract = await ethutil.getTruffleContract(LevelABI, {from})
-        const contract = await Contract.new(...level.deployParams, props)
+      // Deploy contract
+      const LevelABI = JSON.parse(fs.readFileSync(`./build/contracts/levels/${level.levelContract}/${withoutExtension(level.levelContract)}.json`, 'utf-8'))
+      const Contract = await ethutil.getTruffleContract(LevelABI, {from})
+      const contract = await Contract.new(...level.deployParams, props)
 
-        console.log(colors.yellow(`  ${level.name}: ${contract.address}`));
-        deployData[level.deployId] = contract.address
-        console.log(colors.gray(`  storing deployed id: ${level.deployId} with address: ${contract.address}`));
+      console.log(colors.yellow(`  ${level.name}: ${contract.address}`));
+      deployData[level.deployId] = contract.address
+      console.log(colors.gray(`  storing deployed id: ${level.deployId} with address: ${contract.address}`));
 
-        // Register level in Ethernaut contract
-        console.log(`  Registering level ${level.levelContract} in Ethernaut.sol...`)
-        const tx = await ethernaut.registerLevel(contract.address, props);
-        console.log(`Registered ${level.levelContract}!`)
-        // console.log(tx)
-      }
-      else {
-        console.log(`Using deployed ${level.levelContract}...`);
-      }
-      resolve(level)
-    })
-  })
+      // Register level in LiftTicket contract
+      console.log(`  Registering level ${level.levelContract} in LiftTicket.sol...`)
+      const tx = await liftTicket.registerLevel(contract.address, props);
+      console.log(`Registered ${level.levelContract}!`)
+      // console.log(tx)
+      storeDeployData(DEPLOY_DATA_PATH, deployData);
+    } else {
+      console.log(`Using deployed ${level.levelContract}...`);
+    }
+  };
 
-  return Promise.all(promises)
 }
 
 // ----------------------------------

@@ -2,28 +2,28 @@ const KingFactory = artifacts.require('./levels/KingFactory.sol')
 const King = artifacts.require('./attacks/King.sol')
 const KingAttack = artifacts.require('./attacks/KingAttack.sol')
 
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 const { BN, constants, expectEvent, expectRevert } = require('openzeppelin-test-helpers')
 const utils = require('../utils/TestUtils')
 
 
 contract('King', function(accounts) {
 
-  let ethernaut
+  let liftTicket
   let level
   let owner = accounts[1]
   let player = accounts[0]
 
   before(async function() {
-    ethernaut = await Ethernaut.new();
+    liftTicket = await LiftTicket.new();
     level = await KingFactory.new()
-    await ethernaut.registerLevel(level.address)
+    await liftTicket.registerLevel(level.address)
   });
 
   it('should allow the player to solve the level', async function() {
 
     const instance = await utils.createLevelInstance(
-      ethernaut, level.address, player, King,
+      liftTicket, level.address, player, King,
       {from: player, value: web3.utils.toWei('1', 'ether')}
     )
 
@@ -64,7 +64,7 @@ contract('King', function(accounts) {
     //       player wins when the factory is not able to do this.
     //console.log('Check complete (should fail)...')
     let completed = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player
@@ -83,7 +83,7 @@ contract('King', function(accounts) {
     // Factory check (should pass)
     //console.log('Check complete (should pass)...')
     completed = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player

@@ -11,13 +11,13 @@ const syncPlayerProgresses = store => next => action => {
   const state = store.getState()
   if(
     !state.network.web3 ||
-    !state.contracts.ethernaut ||
+    !state.contracts.liftTicket ||
     !state.gamedata.levels ||
     !state.player.address
   ) return next(action)
 
   // Watch LevelCompletedLog
-  const log = state.contracts.ethernaut.LevelCompletedLog({
+  const log = state.contracts.liftTicket.LevelCompletedLog({
     filter: { player: state.player.address }
   });
 

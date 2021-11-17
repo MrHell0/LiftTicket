@@ -1,43 +1,43 @@
 import * as ethutil from '../utils/ethutil'
-import EthernautABI from 'contracts/build/contracts/Ethernaut.sol/Ethernaut.json'
+import LiftTicketABI from 'contracts/build/contracts/LiftTicket.sol/LiftTicket.json'
 import * as actions from '../actions';
 import { loadTranslations } from '../utils/translations'
 
 let language = localStorage.getItem('lang')
 let strings = loadTranslations(language)
 
-const loadEthernautContract = store => next => action => {
-  if(action.type !== actions.LOAD_ETHERNAUT_CONTRACT) return next(action)
+const loadLiftTicketContract = store => next => action => {
+  if(action.type !== actions.LOAD_LIFT_TICKET_CONTRACT) return next(action)
   if(action.contract !== undefined) return next(action)
 
   const state = store.getState()
   if(
     !state.network.web3 ||
     !state.player.address ||
-    !state.gamedata.ethernautAddress
+    !state.gamedata.liftTicketAddress
   ) {
-    // console.log(`UNABLE TO LOAD ETHERNAUT`)
+    // console.log(`UNABLE TO LOAD LIFTTICKET`)
     return next(action)
   }
-  // console.log(`GETTING ETHERNAUT...`, state.gamedata.ethernautAddress)
+  // console.log(`GETTING LIFTTICKET...`, state.gamedata.liftTicketAddress)
 
   // Get contract template
-  const Ethernaut = ethutil.getTruffleContract(
-    EthernautABI,
+  const LiftTicket = ethutil.getTruffleContract(
+    LiftTicketABI,
     {
       from: state.player.address,
-      gasPrice: state.network.gasPrice
+      gasPrice: state.network.gasPrice * 2
     }
   )
 
   // Get deployed instance
-  Ethernaut.at(state.gamedata.ethernautAddress)
+  LiftTicket.at(state.gamedata.liftTicketAddress)
     .then(instance => {
 
-      console.info(`=> ${strings.ethernautAddressMessage}\n${instance.address}`)
+      console.info(`=> ${strings.liftTicketAddressMessage}\n${instance.address}`)
 
       // for player interaction via the browser's console
-      window.ethernaut = instance
+      window.liftTicket = instance
 
       action.contract = instance
       next(action)
@@ -50,8 +50,8 @@ const loadEthernautContract = store => next => action => {
         store.dispatch(actions.loadLevelInstance(state.gamedata.activeLevel, true, false))
     })
     .catch(() => {
-      console.error(`@bad ${strings.ethernautNotFoundMessage}`)
+      console.error(`@bad ${strings.liftTicketNotFoundMessage}`)
     })
 }
 
-export default loadEthernautContract
+export default loadLiftTicketContract

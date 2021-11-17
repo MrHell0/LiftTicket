@@ -1,4 +1,4 @@
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 const DexFactory = artifacts.require('./levels/DexFactory.sol')
 const SwappableToken = artifacts.require('SwappableToken')
 const Dex = artifacts.require('./levels/Dex.sol')
@@ -7,7 +7,7 @@ const utils = require('../utils/TestUtils')
 
 
 contract('Dex', function (accounts) {
-    let ethernaut
+    let liftTicket
     let level
     let owner = accounts[1]
     let player = accounts[0]
@@ -17,13 +17,13 @@ contract('Dex', function (accounts) {
     // console.log(`player is ${player}`)
 
     before(async function () {
-        ethernaut = await Ethernaut.new()
+        liftTicket = await LiftTicket.new()
         level = await DexFactory.new()
-        await ethernaut.registerLevel(level.address)
+        await liftTicket.registerLevel(level.address)
     })
 
     it('should allow the player to solve the level', async function () {
-        const instance = await utils.createLevelInstance(ethernaut, level.address, player, Dex)
+        const instance = await utils.createLevelInstance(liftTicket, level.address, player, Dex)
         // Check init balances
         let token_one_address = await instance.token1()
         let token_two_address = await instance.token2()
@@ -62,7 +62,7 @@ contract('Dex', function (accounts) {
 
         // Check win.
         const ethCompleted = await utils.submitLevelInstance(
-            ethernaut,
+            liftTicket,
             level.address,
             instance.address,
             player

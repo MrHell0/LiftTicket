@@ -86,7 +86,7 @@ window.addEventListener('load', async() => {
       let player;
       if(accounts.length !== 0 && !error) player = accounts[0]
       store.dispatch(actions.setPlayerAddress(player))
-      store.dispatch(actions.loadEthernautContract())
+      store.dispatch(actions.loadLiftTicketContract())
       ethutil.watchAccountChanges(acct => {
         store.dispatch(actions.setPlayerAddress(acct))
       }, player)

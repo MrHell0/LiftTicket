@@ -22,7 +22,7 @@ const loadGameData = store => next => action => {
       level.idx = i;
       levelsOut.push(level);
     }
-    action.ethernautAddress = deployData.ethernaut
+    action.liftTicketAddress = deployData.liftTicket
     action.levels = levelsOut;
   } catch(e) {
     window.alert(strings.noLevelsDataMessage)

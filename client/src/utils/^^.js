@@ -230,7 +230,7 @@ function setupConsoleUtils() {
   window.help = function() {
     console.table({
       'player': strings.helperPlayer,
-      'ethernaut': strings.helperEthernaut,
+      'liftTicket': strings.helperLiftTicket,
       'level': strings.helperLevel,
       'contract': strings.helperContract,
       'instance': strings.helperInstance,

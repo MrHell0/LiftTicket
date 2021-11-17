@@ -43,12 +43,12 @@ help()
 
 &nbsp;
 
-#### 4. ethernaut のコントラクト
+#### 4. liftTicket のコントラクト
 
 コンソールで以下のコマンドを入力します。
 
 ```
-ethernaut
+liftTicket
 ```
 
 これはこのゲームのメインのスマートコントラクトです。コンソールから直接操作する必要はありませんが（このアプリがやってくれるので）、やりたければできます。今、このオブジェクトを使って遊ぶことは、ゲームの他のスマートコントラクトとのやりとりを学ぶのに最適な方法です。
@@ -59,15 +59,15 @@ ethernaut オブジェクトを展開して、中身を見てみましょう。
 
 #### 5. ABI とのインタラクト
 
-`ethernaut` は、ブロックチェーンにデプロイされたコントラクト `Ethernaut.sol` をラップした `TruffleContract` オブジェクトです。
+`liftTicket` は、ブロックチェーンにデプロイされたコントラクト `LiftTicket.sol` をラップした `TruffleContract` オブジェクトです。
 
-とりわけ、コントラクトの ABI は、`Ethernaut.sol`のすべてのパブリックメソッド（`owner`など）を公開しています。例えば以下のようなコマンドを入力します。
+とりわけ、コントラクトの ABI は、`LiftTicket.sol`のすべてのパブリックメソッド（`owner`など）を公開しています。例えば以下のようなコマンドを入力します。
 
 ```
-ethernaut.owner()
+liftTicket.owner()
 ```
 
-###### Chrome v62 を使用している場合は、`await ethernaut.owner()`と入力してください。
+###### Chrome v62 を使用している場合は、`await liftTicket.owner()`と入力してください。
 
 ethernaut コントラクトの owner が誰であるかを見ることができます。
 

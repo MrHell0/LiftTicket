@@ -3,27 +3,27 @@ const ForceFactory = artifacts.require('./levels/ForceFactory.sol')
 const ForceAttack = artifacts.require('./attacks/ForceAttack.sol')
 const Force = artifacts.require('./levels/Force.sol')
 
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 const { BN, constants, expectEvent, expectRevert } = require('openzeppelin-test-helpers')
 const utils = require('../utils/TestUtils')
 
 
 contract('Force', function(accounts) {
 
-  let ethernaut
+  let liftTicket
   let level
   let owner = accounts[1]
   let player = accounts[0]
 
   before(async function() {
-    ethernaut = await Ethernaut.new();
+    liftTicket = await LiftTicket.new();
     level = await ForceFactory.new()
-    await ethernaut.registerLevel(level.address)
+    await liftTicket.registerLevel(level.address)
   });
 
   it('should allow the player to solve the level', async function() {
 
-    const instance = await utils.createLevelInstance(ethernaut, level.address, player, Force);
+    const instance = await utils.createLevelInstance(liftTicket, level.address, player, Force);
 
     // Check init balances
     let balance = await utils.getBalance(web3, instance.address)
@@ -57,7 +57,7 @@ contract('Force', function(accounts) {
 
     // Check win.
     const ethCompleted = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player

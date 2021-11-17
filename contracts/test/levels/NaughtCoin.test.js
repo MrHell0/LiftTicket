@@ -2,29 +2,29 @@ const NaughtCoin = artifacts.require('./levels/NaughtCoin.sol')
 const NaughtCoinFactory = artifacts.require('./levels/NaughtCoinFactory.sol')
 const NaughtCoinAttack = artifacts.require('./attacks/NaughtCoinAttack.sol')
 
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 const { BN, constants, expectEvent, expectRevert } = require('openzeppelin-test-helpers')
 const utils = require('../utils/TestUtils')
 
 
 contract('NaughtCoin', function(accounts) {
 
-  let ethernaut
+  let liftTicket
   let level
   let owner = accounts[1]
   let player = accounts[0]
 
   before(async function() {
-    ethernaut = await Ethernaut.new();
+    liftTicket = await LiftTicket.new();
     level = await NaughtCoinFactory.new()
-    await ethernaut.registerLevel(level.address)
+    await liftTicket.registerLevel(level.address)
   });
 
   it('should fail if the player did not solve the level', async function() {
-    const instance = await utils.createLevelInstance(ethernaut, level.address, player, NaughtCoin)
+    const instance = await utils.createLevelInstance(liftTicket, level.address, player, NaughtCoin)
 
     const completed = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player
@@ -35,7 +35,7 @@ contract('NaughtCoin', function(accounts) {
 
 
   it('should allow the player to solve the level', async function() {
-    const instance = await utils.createLevelInstance(ethernaut, level.address, player, NaughtCoin);
+    const instance = await utils.createLevelInstance(liftTicket, level.address, player, NaughtCoin);
     const attacker = await NaughtCoinAttack.new();
 
     // Allow the contract to call transfer tokens on your behalf, transferFrom has a different implementation to transfer, so it will be allowed
@@ -46,7 +46,7 @@ contract('NaughtCoin', function(accounts) {
     await attacker.attack(instance.address, player);
 
     const completed = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player

@@ -2,7 +2,7 @@ const RecoveryFactory = artifacts.require('./levels/RecoveryFactory.sol')
 const Recovery = artifacts.require('./levels/Recovery.sol')
 const RecoverySimpleToken = artifacts.require('./levels/RecoverySimpleToken.sol')
 
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 const utils = require('../utils/TestUtils')
 
 let rlp = require('rlp')
@@ -17,20 +17,20 @@ let targetAddress = function(instanceAddress,nonce) {
 contract('Recovery', function(accounts) {
 
   let level
-  let ethernaut
+  let liftTicket
   let player = accounts[0]
   let instance
 
   before(async function () {
-    ethernaut = await Ethernaut.new();
+    liftTicket = await LiftTicket.new();
     level = await RecoveryFactory.new()
-    await ethernaut.registerLevel(level.address)
+    await liftTicket.registerLevel(level.address)
 
     //console.log("here");
     //console.log(level.address);
 
     instance = await utils.createLevelInstance(
-      ethernaut, level.address, player, Recovery,
+      liftTicket, level.address, player, Recovery,
       {from: player, value: web3.utils.toWei('1', 'ether')}
     )
   })
@@ -56,7 +56,7 @@ contract('Recovery', function(accounts) {
   it('should allow the player to solve the level', async function () {
     //console.log('Check complete (should fail)...')
     let completed = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player
@@ -76,7 +76,7 @@ contract('Recovery', function(accounts) {
     // Factory check (should pass)
     //console.log('Check complete (should pass)...')
     completed = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player

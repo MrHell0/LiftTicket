@@ -1,24 +1,24 @@
 const PrivacyFactory = artifacts.require('./levels/PrivacyFactory.sol')
 const Privacy = artifacts.require('./attacks/Privacy.sol')
 
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 const { BN, constants, expectEvent, expectRevert } = require('openzeppelin-test-helpers')
 const utils = require('../utils/TestUtils')
 
 
 contract('Privacy', function(accounts) {
 
-  let ethernaut
+  let liftTicket
   let level
   let instance
   let player = accounts[0]
 
   before(async function() {
-    ethernaut = await Ethernaut.new();
+    liftTicket = await LiftTicket.new();
     level = await PrivacyFactory.new()
-    await ethernaut.registerLevel(level.address)
+    await liftTicket.registerLevel(level.address)
     instance = await utils.createLevelInstance(
-      ethernaut, level.address, player, Privacy,
+      liftTicket, level.address, player, Privacy,
       {from: player, value: web3.utils.toWei('1', 'ether')}
     )
   });
@@ -53,7 +53,7 @@ contract('Privacy', function(accounts) {
 
       // Factory check (should pass)
       const completed = await utils.submitLevelInstance(
-        ethernaut,
+        liftTicket,
         level.address,
         instance.address,
         player

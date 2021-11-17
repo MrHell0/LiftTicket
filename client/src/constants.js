@@ -47,12 +47,13 @@ export const GOOGLE_ANALYTICS_ID = 'UA-85043059-4'
 export const ADDRESSES = {
   [NETWORKS.LOCAL.name]: undefined,
   [NETWORKS.ROPSTEN.name]: '0x09902A56d04a9446601a0d451E07459dC5aF0820',
-  [NETWORKS.RINKEBY.name]: '0x09902A56d04a9446601a0d451E07459dC5aF0820'
+  [NETWORKS.RINKEBY.name]: '0x09902A56d04a9446601a0d451E07459dC5aF0820',
+  [NETWORKS.FUJI.name]: '0x68e6844Da5Fa964a40491BD83E5eb1A285a6d886'
 }
 
 // Storage
 export const VERSION = pkgJSON.default.version
-export const STORAGE_PLAYER_DATA_KEY = `ethernaut_player_data_${VERSION}_`
+export const STORAGE_PLAYER_DATA_KEY = `lift_ticket_player_data_${VERSION}_`
 
 // Paths
 export const PATH_ROOT = '/'

@@ -2,22 +2,22 @@ const Reentrance = artifacts.require('./levels/Reentrance.sol')
 const ReentranceFactory = artifacts.require('./levels/ReentranceFactory.sol')
 const ReentranceAttack = artifacts.require('./attacks/ReentranceAttack.sol')
 
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 const { BN, constants, expectEvent, expectRevert } = require('openzeppelin-test-helpers')
 const utils = require('../utils/TestUtils')
 
 
 contract('Reentrance', function(accounts) {
 
-  let ethernaut
+  let liftTicket
   let level
   let owner = accounts[1]
   let player = accounts[0]
 
   before(async function() {
-    ethernaut = await Ethernaut.new();
+    liftTicket = await LiftTicket.new();
     level = await ReentranceFactory.new()
-    await ethernaut.registerLevel(level.address)
+    await liftTicket.registerLevel(level.address)
   });
 
   it('should allow the player to solve the level', async function() {
@@ -28,7 +28,7 @@ contract('Reentrance', function(accounts) {
     //console.log(`level insertCoin:`, insertCoin)
 
     const instance = await utils.createLevelInstance(
-      ethernaut, level.address, player, Reentrance,
+      liftTicket, level.address, player, Reentrance,
       {from: player, value: web3.utils.toWei(insertCoin, 'ether')}
     )
 
@@ -63,7 +63,7 @@ contract('Reentrance', function(accounts) {
 
     // Factory check
     const ethCompleted = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player

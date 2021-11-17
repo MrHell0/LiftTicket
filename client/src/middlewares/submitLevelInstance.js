@@ -11,7 +11,7 @@ const submitLevelInstance = store => next => async action => {
   const state = store.getState()
   if(
     !state.network.web3 ||
-    !state.contracts.ethernaut ||
+    !state.contracts.liftTicket ||
     !state.contracts.levels[action.level.deployedAddress] ||
     !state.player.address ||
     !state.network.gasPrice
@@ -20,7 +20,7 @@ const submitLevelInstance = store => next => async action => {
   console.asyncInfo(`@good ${strings.submitLevelMessage}`)
 
   let completed = await submitLevelInstanceUtil(
-    state.contracts.ethernaut,
+    state.contracts.liftTicket,
     action.level.deployedAddress,
     state.contracts.levels[action.level.deployedAddress].address,
     state.player.address,
@@ -39,10 +39,10 @@ const submitLevelInstance = store => next => async action => {
 
 export default submitLevelInstance
 
-async function submitLevelInstanceUtil(ethernaut, levelAddress, instanceAddress, player, gasPrice) {
+async function submitLevelInstanceUtil(liftTicket, levelAddress, instanceAddress, player, gasPrice) {
   return new Promise(async function(resolve) {
     const data = {from: player, gasPrice}
-    const tx = await ethernaut.submitLevelInstance(instanceAddress, data);
+    const tx = await liftTicket.submitLevelInstance(instanceAddress, data);
     if(tx.logs.length === 0) resolve(false)
     else {
       if(tx.logs.length === 0) resolve(false)

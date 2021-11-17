@@ -28,10 +28,10 @@ exports.skipBlock = (web3) => {
   });
 }
 
-exports.createLevelInstance = async (ethernaut, levelAddress, player, levelInstanceClass, params) => {
+exports.createLevelInstance = async (liftTicket, levelAddress, player, levelInstanceClass, params) => {
   return new Promise(async function(resolve, reject) {
     const data = params || {from: player}
-    const tx = await ethernaut.createLevelInstance(levelAddress, data);
+    const tx = await liftTicket.createLevelInstance(levelAddress, data);
     if(tx.logs.length === 0) reject()
     else {
       const events = tx.logs.filter(e => e.event === "LevelInstanceCreatedLog");
@@ -42,10 +42,10 @@ exports.createLevelInstance = async (ethernaut, levelAddress, player, levelInsta
   });
 }
 
-exports.submitLevelInstance = async (ethernaut, levelAddress, instanceAddress, player, params) => {
+exports.submitLevelInstance = async (liftTicket, levelAddress, instanceAddress, player, params) => {
   return new Promise(async function(resolve) {
     const data = params || {from: player}
-    const tx = await ethernaut.submitLevelInstance(instanceAddress, data);
+    const tx = await liftTicket.submitLevelInstance(instanceAddress, data);
     if(tx.logs.length === 0) resolve(false)
     else {
       const events = tx.logs.filter(e => e.event === "LevelCompletedLog");

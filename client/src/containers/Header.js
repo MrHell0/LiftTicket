@@ -42,7 +42,7 @@ class Header extends React.Component {
 
             <div className="navbar-brand" style={{paddingTop: '0', paddingBottom: '0', paddingLeft: '25px', lineHeight: '49px'}}>
               <Link to={constants.PATH_ROOT}  style={{ textDecoration: 'none' }}>
-                <span style={{display: 'inline-block', verticalAlign: 'text-top', lineHeight: '22px'}}>{strings.ethernaut}</span>
+                <span style={{display: 'inline-block', verticalAlign: 'text-top', lineHeight: '22px'}}>{strings.liftTicket}</span>
               </Link>
             </div>
 

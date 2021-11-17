@@ -1,27 +1,27 @@
 const FallbackFactory = artifacts.require('./levels/FallbackFactory.sol')
 const Fallback = artifacts.require('./attacks/Fallback.sol')
 
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 const { BN, constants, expectEvent, expectRevert } = require('openzeppelin-test-helpers')
 const utils = require('../utils/TestUtils')
 
 contract('Fallback', function(accounts) {
 
-  let ethernaut
+  let liftTicket
   let level
   let owner = accounts[1]
   let player = accounts[0]
 
   beforeEach(async function() {
-    ethernaut = await Ethernaut.new();
+    liftTicket = await LiftTicket.new();
     level = await FallbackFactory.new()
-    await ethernaut.registerLevel(level.address)
+    await liftTicket.registerLevel(level.address)
   });
 
   it('should allow the player to solve the level', async function() {
 
     const instance = await utils.createLevelInstance(
-      ethernaut, level.address, player, Fallback,
+      liftTicket, level.address, player, Fallback,
       {from: player}
     )
 
@@ -39,7 +39,7 @@ contract('Fallback', function(accounts) {
     assert.equal(0, await utils.getBalance(web3, instance.address))
     // Factory check
     const ethCompleted = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player

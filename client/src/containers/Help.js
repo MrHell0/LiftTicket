@@ -16,7 +16,7 @@ class Help extends React.Component {
     }
     return (
       <div className="page-container">
-        <h2 className="title">{strings.ethernautHelp}</h2>
+        <h2 className="title">{strings.liftTicketHelp}</h2>
         { file && <MarkdownComponent target={file}/> }
       </div>
     )

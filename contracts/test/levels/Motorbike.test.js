@@ -2,29 +2,29 @@ const Motorbike = artifacts.require('./levels/Motorbike.sol')
 const MotorbikeFactory = artifacts.require('./levels/MotorbikeFactory.sol')
 const MotorbikeAttack = artifacts.require('./attacks/MotorbikeAttack.sol')
 
-const Ethernaut = artifacts.require('./Ethernaut.sol')
+const LiftTicket = artifacts.require('./LiftTicket.sol')
 const { BN, constants, expectEvent, expectRevert } = require('openzeppelin-test-helpers')
 const utils = require('../utils/TestUtils')
 
 
 contract('Motorbike', function(accounts) {
 
-  let ethernaut
+  let liftTicket
   let level
   let owner = accounts[1]
   let player = accounts[0]
 
   before(async function() {
-    ethernaut = await Ethernaut.new();
+    liftTicket = await LiftTicket.new();
     level = await MotorbikeFactory.new()
-    await ethernaut.registerLevel(level.address)
+    await liftTicket.registerLevel(level.address)
   });
 
   it('should fail if the player did not solve the level', async function() {
-    const instance = await utils.createLevelInstance(ethernaut, level.address, player, Motorbike)
+    const instance = await utils.createLevelInstance(liftTicket, level.address, player, Motorbike)
 
     const completed = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player
@@ -35,7 +35,7 @@ contract('Motorbike', function(accounts) {
 
 
   it('should allow the player to solve the level', async function() {
-    const instance = await utils.createLevelInstance(ethernaut, level.address, player, Motorbike);
+    const instance = await utils.createLevelInstance(liftTicket, level.address, player, Motorbike);
 
     const address = await web3.eth.getStorageAt(instance.address, "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc")
     let string = '0x' + JSON.stringify(address).substr(27, 40);
@@ -50,7 +50,7 @@ contract('Motorbike', function(accounts) {
     await attacker.destroy();
 
     const completed = await utils.submitLevelInstance(
-      ethernaut,
+      liftTicket,
       level.address,
       instance.address,
       player

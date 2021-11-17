@@ -11,9 +11,9 @@ const loadLevelInstance = store => next => action => {
   const state = store.getState()
   if(
     !state.network.web3 ||
-    !state.contracts.ethernaut
+    !state.contracts.liftTicket
   ) {
-    console.error(`@bad ${strings.ethernautNotFoundMessage}`)
+    console.error(`@bad ${strings.liftTicketNotFoundMessage}`)
     return next(action)
   } else if(
     !state.player.address
@@ -38,10 +38,10 @@ const loadLevelInstance = store => next => action => {
       console.error(`@bad ${strings.unableToRetrieveLevelMessage}`, error || '')
     }
 
-    // const estimate = await state.contracts.ethernaut.getLevelInstance.estimateGas(action.level.deployedAddress)
+    // const estimate = await state.contracts.liftTicket.getLevelInstance.estimateGas(action.level.deployedAddress)
     const estimate = parseInt(action.level.instanceGas, 10) || 2000000
     const deployFunds = state.network.web3.utils.toWei(parseInt(action.level.deployFunds, 10).toString(), 'ether')
-    state.contracts.ethernaut.createLevelInstance(action.level.deployedAddress, {
+    state.contracts.liftTicket.createLevelInstance(action.level.deployedAddress, {
       gas: estimate.toString(),
       gasPrice: 2 * state.network.gasPrice,
       from: state.player.address,
