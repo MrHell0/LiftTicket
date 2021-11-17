@@ -7,12 +7,20 @@
   height: 100%;
 }
 
+#main {
+  height: 100%;
+  background: black url("/imgs/snow-small-contrast.jpg") repeat;
+}
+
+/* #main {
+  background: url("/imgs/snow-small.jpg") repeat-y;
+} */
 .no-margin {
   margin: 0 !important;
 }
 
 .btn {
-  font-weight: 300;
+  font-weight: 800;
   letter-spacing: 0.75px !important;
   border: 1px solid;
   border-image: initial;
@@ -23,8 +31,8 @@
 
 .btn-primary {
   color: white;
-  background: rgb(74, 144, 226) none !important;
-  border-color: rgb(74, 144, 226) !important;
+  background: red none !important; /* rgb(74, 144, 226) none !important;*/
+  border-color: red !important; /*rgb(74, 144, 226) !important; */
 }
 
 .btn-info {
@@ -54,13 +62,16 @@
   letter-spacing: 1px;
 }
 
+#header {
+  background: black url("/imgs/snow-small2-contrast.jpg") repeat; /*  rgb(74, 74, 74); */
+  color: white;
+}
 .navbar {
   font-family: "Helvetica Neue", Lato, Helvetica, Arial, sans-serif;
   line-height: 50px;
   font-size: 17px;
   padding: 5px 0;
-  font-weight: 300;
-  color: #e84142; /*  rgb(74, 74, 74); */
+  font-weight: 400;
   position: relative;
   display: block;
   min-height: 50px;
@@ -80,7 +91,7 @@
 }
 
 .navbar-default {
-  background-image: linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
+  /* background-image: linear-gradient(to bottom, #fff 0%, #f8f8f8 100%); */
   background-repeat: repeat-x;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
     0 1px 5px rgba(0, 0, 0, 0.075);
@@ -104,10 +115,14 @@
   color: #000 !important;
 }
 
+#sidebar {
+  background: black url("/imgs/snow-small2-contrast.jpg") repeat !important; /*  rgb(74, 74, 74); */
+}
+
 .levels-list-title {
   font-weight: 500;
   letter-spacing: 0.75px !important;
-  color: red;
+  color: white;
 }
 .levels-list {
   font-weight: 400;
@@ -115,11 +130,11 @@
 }
 
 a {
-  color: red;
+  color: white;
 }
 
 a:hover {
-  color: red;
+  color: white;
   text-decoration: underline;
 }
 

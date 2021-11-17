@@ -27,11 +27,9 @@ class Header extends React.Component {
     return (
       <nav className="navbar navbar-default" style={{
         borderRadius: '0px',
-        backgroundImage: '',
-        backgroundColor: 'red',
         zIndex: 10000
       }}>
-        <div style={{height: '50px'}}>
+        <div id="header" style={{height: '50px'}}>
 
           {/* HEADER */}
           <div className="navbar-header">
