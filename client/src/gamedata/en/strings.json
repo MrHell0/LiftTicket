@@ -1,6 +1,6 @@
 {
     "liftTicket": "LiftTicket",
-    "title": "Lift Ticket -- Your Ticket to the Top!",
+    "title": "Lift Ticket - Your ticket to the top of Web3",
     "info": "<p>Lift Ticket is a Web3/Solidity game based on <a href='https://ethernaut.openzeppelin.com' target='_blank' rel='noopener noreferrer'>Ethernaut</a>, running on the Avalanche network. Each level is a smart contract that needs to be 'hacked'.</p><p>The game is 100% open source and all levels are contributions made by other players. Do you have an interesting idea? PRs are welcome at <a href='https://github.com/MrHell0/LiftTicket'>github.com/MrHell0/LiftTicket</a>.</p><p> You like the game but your language is not available? <a href='https://github.com/MrHell0/LiftTicket/tree/master/README.md#adding-new-languages' target='_blank' rel='noopener noreferrer'><strong style={{ color: '#eb5424', fontWeight: 600 }}> Contribute a translation!</strong></a></p>",
     "home": "Home",
     "help": "Help",
