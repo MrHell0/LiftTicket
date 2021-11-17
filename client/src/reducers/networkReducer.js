@@ -2,7 +2,7 @@ import * as actions from '../actions';
 
 const initialState = {
   web3: undefined,
-  gasPrice: 20000000,
+  gasPrice: 225000000000,
   blockNum: undefined,
   networkId: undefined
 }
