@@ -2,6 +2,9 @@ import React from 'react'
 import loadText from '../utils/textloader'
 import 'highlight.js/styles/atom-one-dark.css'
 import hljs from 'highlight.js'
+import hljsDefineSolidity from 'highlightjs-solidity'
+
+hljsDefineSolidity(hljs)
 
 class Code extends React.Component {
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import loadText from '../utils/textloader'
 import ReactMarkdown from 'react-markdown'
+import rehypeHighlight from 'rehype-highlight'
 
 class Markdown extends React.Component {
 
@@ -39,7 +40,7 @@ class Markdown extends React.Component {
 
   render() {
     const children = this.state.source;
-    return <div>{ children && <ReactMarkdown children={children}/> }</div>
+    return <div>{ children && <ReactMarkdown children={children} rehypePlugins={[rehypeHighlight]}/> }</div>
   }
 }
 
