@@ -12,7 +12,7 @@ class Sidebar extends React.Component {
     let strings = loadTranslations(language)
 
     return (
-      <div style={{
+      <div id="sidebar" style={{
         padding: '15px 10px'
       }}>
 

@@ -27,11 +27,9 @@ class Header extends React.Component {
     return (
       <nav className="navbar navbar-default" style={{
         borderRadius: '0px',
-        backgroundImage: '',
-        backgroundColor: 'red',
         zIndex: 10000
       }}>
-        <div style={{height: '50px'}}>
+        <div id="header" style={{height: '50px'}}>
 
           {/* HEADER */}
           <div className="navbar-header">
@@ -42,7 +40,7 @@ class Header extends React.Component {
 
             <div className="navbar-brand" style={{paddingTop: '0', paddingBottom: '0', paddingLeft: '25px', lineHeight: '49px'}}>
               <Link to={constants.PATH_ROOT}  style={{ textDecoration: 'none' }}>
-                <span style={{display: 'inline-block', verticalAlign: 'text-top', lineHeight: '22px'}}>{strings.liftTicket}</span>
+                <span style={{display: 'inline-block', verticalAlign: 'text-top', lineHeight: '22px'}}>{strings.home}</span>
               </Link>
             </div>
 
@@ -53,9 +51,6 @@ class Header extends React.Component {
 
             {/* LEFT */}
             <ul className="nav navbar-nav" style={{paddingLeft: '10px'}}>
-              <li className={currentPath === constants.PATH_ROOT ? 'active' : ''}>
-                <Link to={constants.PATH_ROOT} style={{fontSize: '16px'}}>{strings.home}</Link>
-              </li>
               <li className={currentPath === constants.PATH_HELP ? 'active' : ''}>
                 <Link to={constants.PATH_HELP} style={{fontSize: '16px'}}>{strings.help}</Link>
               </li>

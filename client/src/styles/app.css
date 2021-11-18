@@ -7,12 +7,20 @@
   height: 100%;
 }
 
+/* #main {
+  height: 100%;
+  background: black url("/imgs/snow-small-contrast.jpg") repeat;
+}
+ */
+/* #main {
+  background: url("/imgs/snow-small.jpg") repeat-y;
+} */
 .no-margin {
   margin: 0 !important;
 }
 
 .btn {
-  font-weight: 300;
+  font-weight: 800;
   letter-spacing: 0.75px !important;
   border: 1px solid;
   border-image: initial;
@@ -23,8 +31,8 @@
 
 .btn-primary {
   color: white;
-  background: rgb(74, 144, 226) none !important;
-  border-color: rgb(74, 144, 226) !important;
+  background: red none !important; /* rgb(74, 144, 226) none !important;*/
+  border-color: red !important; /*rgb(74, 144, 226) !important; */
 }
 
 .btn-info {
@@ -48,19 +56,26 @@
   margin-top: 20px;
 }
 
+#root > div > div > div {
+  background: black url("/imgs/snow-small2-contrast.jpg") repeat; /*  rgb(74, 74, 74); */
+}
+
 .title {
   font-weight: 600;
   line-height: 1.5em;
   letter-spacing: 1px;
 }
 
+#header {
+  background: black url("/imgs/snow-small2-contrast.jpg") repeat; /*  rgb(74, 74, 74); */
+  color: white;
+}
 .navbar {
   font-family: "Helvetica Neue", Lato, Helvetica, Arial, sans-serif;
   line-height: 50px;
   font-size: 17px;
   padding: 5px 0;
-  font-weight: 300;
-  color: #e84142; /*  rgb(74, 74, 74); */
+  font-weight: 400;
   position: relative;
   display: block;
   min-height: 50px;
@@ -80,7 +95,7 @@
 }
 
 .navbar-default {
-  background-image: linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
+  /* background-image: linear-gradient(to bottom, #fff 0%, #f8f8f8 100%); */
   background-repeat: repeat-x;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
     0 1px 5px rgba(0, 0, 0, 0.075);
@@ -101,13 +116,17 @@
   background-image: none !important;
   background-color: inherit !important;
   box-shadow: none !important;
-  color: #000 !important;
+  color: white !important;
+}
+
+#sidebar {
+  background: black url("/imgs/snow-small2-contrast.jpg") repeat !important; /*  rgb(74, 74, 74); */
 }
 
 .levels-list-title {
   font-weight: 500;
   letter-spacing: 0.75px !important;
-  color: red;
+  color: white;
 }
 .levels-list {
   font-weight: 400;
@@ -115,11 +134,17 @@
 }
 
 a {
-  color: red;
+  color: white;
+  font-weight: bold;
 }
 
 a:hover {
-  color: red;
+  color: white;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: white !important;
   text-decoration: underline;
 }
 
@@ -153,7 +178,11 @@ a:hover {
   float: none;
 }
 
+.title {
+  margin-top: 40px;
+}
+
 .level-title > .title > .label {
   font-weight: 400;
-  font-size: 10px !important;
+  font-size: 40px !important;
 }

@@ -26,7 +26,7 @@ class App extends React.Component {
     let language = localStorage.getItem('lang')
     let strings = loadTranslations(language)
     return (
-      <div style={{ fontFamily: '"Helvetica Neue", Lato, sans-serif'}}>
+      <div style={{ fontFamily: 'courier, Lato, sans-serif', color: 'white', background: 'black url("/imgs/snow-small-contrast.jpg") repeat'}}>
         <Header/>
 
         {/* SPLIT VIEW */}
@@ -35,9 +35,9 @@ class App extends React.Component {
           transitions={false}
           docked={true}
           shadow={false}
-          styles={{ root: { top: 62, bottom: 20 }, sidebar: { backgroundColor: '#e5f2fb', boxShadow: 'none' }, content: { overflowX: 'hidden' }}}
+          styles={{ root: { top: 62, bottom: 20 }, sidebar: { boxShadow: 'none' }, content: { overflowX: 'hidden' }}}
         >
-        <div ref={el => this.childrenElement = el}>
+        <div id="main" ref={el => this.childrenElement = el}>
           {this.props.children}
         </div>
         </Sidebar>

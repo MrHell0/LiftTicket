@@ -75,8 +75,7 @@ class Level extends React.Component {
     const nextLevelId = findNextLevelId(this.props.level, this.props.levels)
 
     return (
-      <div className="page-container">
-
+      <div id="level" className="page-container">
         <div className="page-header row">
           {/* TITLE + INFO */}
           <div className="level-title col-sm-6">
