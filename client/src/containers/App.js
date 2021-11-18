@@ -2,19 +2,9 @@ import React from 'react';
 import Sidebar from 'react-sidebar';
 import Header from './Header';
 import SidebarContent from './Sidebar';
-import ReactGA from 'react-ga'
-import * as constants from '../constants';
 import { loadTranslations } from '../utils/translations'
 
 class App extends React.Component {
-
-  constructor() {
-    super()
-
-    // Analytics
-    ReactGA.initialize(constants.GOOGLE_ANALYTICS_ID);
-    ReactGA.pageview(window.location.pathname);
-  }
 
   componentDidUpdate(prevProps) {
     if(this.props.location !== prevProps.location) {
