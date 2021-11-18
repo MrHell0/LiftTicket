@@ -1,7 +1,7 @@
 &nbsp;
 #### Mecanica del juego
 
-El juego utiliza el contrato principal `Ethernaut.sol` para gestionar el progreso del jugador y delegar la interacción con las implementaciones de `Level.sol`. Cada contrato de nivel emite cada vez nuevas instancias para que los jugadores manipulen, rompan, destruyan, corrijan, etc. El jugador solicita una instancia, la manipula y la devuelve al juego para evaluar el nivel completado. Las acciones para generar una nueva instance y/o devolverla manipulada al juego se realizan con los botones en la interfaz de usuario en cada nivel. Cuando esta aplicación recupera una instancia de `Ethernaut.sol`, la envuelve en un objeto `TruffleContract` y la expone en la consola del navegador.Consulta el primer nivel para ver un tutorial completo sobre cómo jugar al juego.
+El juego utiliza el contrato principal `LiftTicket.sol` para gestionar el progreso del jugador y delegar la interacción con las implementaciones de `Level.sol`. Cada contrato de nivel emite cada vez nuevas instancias para que los jugadores manipulen, rompan, destruyan, corrijan, etc. El jugador solicita una instancia, la manipula y la devuelve al juego para evaluar el nivel completado. Las acciones para generar una nueva instance y/o devolverla manipulada al juego se realizan con los botones en la interfaz de usuario en cada nivel. Cuando esta aplicación recupera una instancia de `LiftTicket.sol`, la envuelve en un objeto `TruffleContract` y la expone en la consola del navegador.Consulta el primer nivel para ver un tutorial completo sobre cómo jugar al juego.
 
 &nbsp;
 #### Usando la consola del navegador

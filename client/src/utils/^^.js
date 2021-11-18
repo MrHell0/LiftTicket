@@ -239,7 +239,7 @@ function setupConsoleUtils() {
       'getBlockNumber()': strings.helperGetBlockNumber,
       'sendTransaction({options})': strings.helperSendTransaction,
       'getNetworkId()': strings.helperGetNetworkId,
-      'toWei(ether)': strings.helperToWei,
+      'toWei(AVAX)': strings.helperToWei,
       'fromWei(wei)': strings.helperFromWei,
     })
   }

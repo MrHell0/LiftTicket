@@ -44,24 +44,24 @@ Go ahead and expand the ethernaut object to see what's inside.
 
 &nbsp;
 #### 5. Interact with the ABI
-`ethernaut` is a `TruffleContract` object that wraps the `Ethernaut.sol` contract that has been deployed to the blockchain.
+`liftTicket` is a `TruffleContract` object that wraps the `LiftTicket.sol` contract that has been deployed to the blockchain.
 
-Among other things, the contract's ABI exposes all of `Ethernaut.sol`'s public methods, such as `owner`. Type the following command for example:
+Among other things, the contract's ABI exposes all of `LiftTicket.sol`'s public methods, such as `owner`. Type the following command for example:
 ```
-ethernaut.owner()
+liftTicket.owner()
 ```
-###### `await ethernaut.owner()` if you're using Chrome v62.
+###### `await liftTicket.owner()` if you're using Chrome v62.
 You can see who the owner of the ethernaut contract is, which is not you of course =D.
 
 &nbsp;
-#### 6. Get test ether
-To play the game, you will need test ether. The easiest way to get some testnet ether is via [this faucet](https://faucet.rinkeby.io/).
+#### 6. Get test AVAX
+To play the game, you will need test AVAX. The easiest way to get some testnet AVAX is via [this faucet](https://faucet.avax-test.network/).
 
 Once you see some ether in your balance, move on to the next step.
 
 &nbsp;
 #### 7. Getting a level instance
-When playing a level, you don't interact directly with the ethernaut contract. Instead, you ask it to generate a **level instance** for you. To do so, click the blue button at the bottom of the page. Go do it now and come back!
+When playing a level, you don't interact directly with the Lift Ticket contract. Instead, you ask it to generate a **level instance** for you. To do so, click the blue button at the bottom of the page. Go do it now and come back!
 
 You should be prompted by MetaMask to authorize the transaction. Do so, and you should see some messages in the console. Note that this is deploying a new contract in the blockchain and might take a few seconds, so please be patient when requesting new level instances!
 

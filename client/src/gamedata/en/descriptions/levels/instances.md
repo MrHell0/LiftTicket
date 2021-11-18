@@ -54,7 +54,7 @@ liftTicket.owner()
 You can see who the owner of the liftTicket contract is, which is not you of course =D.
 
 &nbsp;
-#### 6. Get test ether
+#### 6. Get test AVAX
 To play the game, you will need test AVAX. The easiest way to get some testnet AVAX is via [this faucet](https://faucet.avax-test.network/).
 
 Once you see some ether in your balance, move on to the next step.
