@@ -5,7 +5,7 @@
 #### 1. MetaMask の設定
 
 まだお持ちでない方は、[MetaMask ブラウザ拡張機能](https://metamask.io/)をインストールしてください（デスクトップマシンの Chrome、Firefox、Brave、Opera にインストール）。
-拡張機能のウォレットを設定し、ネットワークセレクターを使って、拡張機能のインターフェースの上にある「Rinkeby test network」を指定します。
+拡張機能のウォレットを設定し、ネットワークセレクターを使って、拡張機能のインターフェースの上にある「Fuji test network」を指定します。
 
 &nbsp;
 
