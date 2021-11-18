@@ -8,14 +8,6 @@
   color: lightgreen;
 }
 
-/* #main {
-  height: 100%;
-  background: black url("/imgs/snow-small-contrast.jpg") repeat;
-}
- */
-/* #main {
-  background: url("/imgs/snow-small.jpg") repeat-y;
-} */
 .no-margin {
   margin: 0 !important;
 }
@@ -155,14 +147,15 @@ a:visited {
 }
 
 .footer {
-  background-color: #2e4763;
-  font-weight: 300;
+  background-color: #383737;
+  font-weight: 900;
   letter-spacing: 0.75px !important;
   bottom: 0;
   position: fixed;
   left: 0;
   right: 0;
   z-index: 1030;
+  color: #ce1f7f;
 }
 
 .footer a {

@@ -43,8 +43,8 @@ class App extends React.Component {
         </Sidebar>
 
         {/* FOOTER */}
-        <footer className="footer text-center text-muted">
-          <small dangerouslySetInnerHTML={{ __html: strings.footer }}></small>
+        <footer className="footer text-center">
+          <div dangerouslySetInnerHTML={{ __html: strings.footer }}></div>
         </footer>
       </div>
     );
