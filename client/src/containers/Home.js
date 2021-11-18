@@ -39,7 +39,7 @@ class Home extends React.Component {
 
           {/* TITLE */}
           <h2 className="title">
-            {strings.title}
+            <div dangerouslySetInnerHTML={{ __html: strings.title }}></div>
           </h2>
           {/* INFO */}
           <div dangerouslySetInnerHTML={{ __html: strings.info }}></div>

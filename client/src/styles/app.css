@@ -7,11 +7,11 @@
   height: 100%;
 }
 
-#main {
+/* #main {
   height: 100%;
   background: black url("/imgs/snow-small-contrast.jpg") repeat;
 }
-
+ */
 /* #main {
   background: url("/imgs/snow-small.jpg") repeat-y;
 } */
@@ -54,6 +54,10 @@
 
 .page-header {
   margin-top: 20px;
+}
+
+#root > div > div > div {
+  background: black url("/imgs/snow-small2-contrast.jpg") repeat; /*  rgb(74, 74, 74); */
 }
 
 .title {
@@ -112,7 +116,7 @@
   background-image: none !important;
   background-color: inherit !important;
   box-shadow: none !important;
-  color: #000 !important;
+  color: white !important;
 }
 
 #sidebar {
@@ -131,10 +135,16 @@
 
 a {
   color: white;
+  font-weight: bold;
 }
 
 a:hover {
   color: white;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: white !important;
   text-decoration: underline;
 }
 
@@ -168,7 +178,11 @@ a:hover {
   float: none;
 }
 
+.title {
+  margin-top: 40px;
+}
+
 .level-title > .title > .label {
   font-weight: 400;
-  font-size: 10px !important;
+  font-size: 40px !important;
 }
