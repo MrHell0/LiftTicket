@@ -5,6 +5,7 @@
 
 #root > [data-reactroot] {
   height: 100%;
+  color: lightgreen;
 }
 
 /* #main {
@@ -30,13 +31,13 @@
 }
 
 .btn-primary {
-  color: white;
+  color: lightgreen;
   background: red none !important; /* rgb(74, 144, 226) none !important;*/
   border-color: red !important; /*rgb(74, 144, 226) !important; */
 }
 
 .btn-info {
-  color: white;
+  color: lightgreen;
   background: #5bc0de none !important;
   border-color: #5bc0de !important;
 }
@@ -47,7 +48,7 @@
 }
 
 .btn-warning {
-  color: white;
+  color: lightgreen;
   background: #eb9316 none !important;
   border-color: #eb9316 !important;
 }
@@ -57,7 +58,8 @@
 }
 
 #root > div > div > div {
-  background: black url("/imgs/snow-small2-contrast.jpg") repeat; /*  rgb(74, 74, 74); */
+  background: black; /*  rgb(74, 74, 74); */
+  color: lightgreen;
 }
 
 .title {
@@ -67,8 +69,8 @@
 }
 
 #header {
-  background: black url("/imgs/snow-small2-contrast.jpg") repeat; /*  rgb(74, 74, 74); */
-  color: white;
+  /*   background: black; */ /*  rgb(74, 74, 74); */
+  color: lightgreen;
 }
 .navbar {
   font-family: "Helvetica Neue", Lato, Helvetica, Arial, sans-serif;
@@ -116,17 +118,17 @@
   background-image: none !important;
   background-color: inherit !important;
   box-shadow: none !important;
-  color: white !important;
+  color: lightgreen !important;
 }
 
 #sidebar {
-  background: black url("/imgs/snow-small2-contrast.jpg") repeat !important; /*  rgb(74, 74, 74); */
+  background: black !important; /*  rgb(74, 74, 74); */
 }
 
 .levels-list-title {
   font-weight: 500;
   letter-spacing: 0.75px !important;
-  color: white;
+  color: lightgreen;
 }
 .levels-list {
   font-weight: 400;
@@ -134,17 +136,17 @@
 }
 
 a {
-  color: white;
+  color: lightgreen;
   font-weight: bold;
 }
 
 a:hover {
-  color: white;
+  color: lightgreen;
   text-decoration: underline;
 }
 
 a:visited {
-  color: white !important;
+  color: lightgreen !important;
   text-decoration: underline;
 }
 
@@ -164,7 +166,7 @@ a:visited {
 }
 
 .footer a {
-  color: white !important;
+  color: lightgreen !important;
 }
 
 .footer a:hover {

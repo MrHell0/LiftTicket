@@ -26,7 +26,7 @@ class App extends React.Component {
     let language = localStorage.getItem('lang')
     let strings = loadTranslations(language)
     return (
-      <div style={{ fontFamily: 'courier, Lato, sans-serif', color: 'white', background: 'black url("/imgs/snow-small-contrast.jpg") repeat'}}>
+      <div style={{ fontFamily: 'courier, Lato, sans-serif', color: 'white', background: 'black'}}>
         <Header/>
 
         {/* SPLIT VIEW */}
