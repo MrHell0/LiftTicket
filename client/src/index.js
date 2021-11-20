@@ -14,6 +14,7 @@ import * as Sentry from "@sentry/browser";
 import { Integrations } from '@sentry/tracing';
 
 import App from './containers/App';
+import About from './containers/About';
 import Home from './containers/Home';
 import NotFound404 from './components/NotFound404';
 
@@ -43,16 +44,18 @@ ReactDOM.render(
         path={constants.PATH_ROOT}
         children={({ location }) => (
           <App location={location}>
-            <Suspense fallback={<div>Loading...</div>}>
+
+          <Suspense fallback={<div>Loading...</div>}>
               <Switch>
-                <Route path={constants.PATH_HELP} component={Help}/>
-                <Route path={constants.PATH_LEVEL} component={Level}/>
-                <Route path={constants.PATH_STATS} component={Stats}/>
                 <Route exact path="/" component={Home}/>
-                <Route path="/" component={NotFound404}/>
+                  <Route path={constants.PATH_HELP} component={Help}/>
+                  <Route path={constants.PATH_LEVEL} component={Level}/>
+                  <Route path={constants.PATH_STATS} component={Stats}/>
+                  <Route path='/about' component={About}/>
+                  <Route path="/" component={NotFound404}/>
               </Switch>
             </Suspense>
-          </App>
+          </App>          
         )}
       />
     </Router>

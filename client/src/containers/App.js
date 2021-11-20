@@ -7,12 +7,22 @@ import { loadTranslations } from '../utils/translations'
 class App extends React.Component {
 
   componentDidUpdate(prevProps) {
+    if (this.props.location.pathname === '/') { return }
     if(this.props.location !== prevProps.location) {
       this.childrenElement.parentElement.scrollTop = 0
     }
   }
 
   render() {
+    console.log(`location is ${this.props.location}`)
+    if (this.props.location.pathname === '/') {
+      return (
+      <>
+      {this.props.children}
+      </>
+      );
+    }
+
     let language = localStorage.getItem('lang')
     let strings = loadTranslations(language)
     return (
@@ -21,7 +31,7 @@ class App extends React.Component {
 
         {/* SPLIT VIEW */}
         <Sidebar
-          sidebar={<div style={{ width: '200px' }}><SidebarContent/></div>}
+          sidebar={<div style={{ width: '300px' }}><SidebarContent/></div>}
           transitions={false}
           docked={true}
           shadow={false}

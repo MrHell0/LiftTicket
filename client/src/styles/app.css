@@ -3,9 +3,18 @@
 @import "./page.css";
 @import url(https://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,700,400italic,700italic);
 
+body {
+  background-color: black;
+}
+
 #root > [data-reactroot] {
   height: 100%;
   color: lightgreen;
+}
+
+#main {
+  margin-left: 40px;
+  margin-right: 600px;
 }
 
 .no-margin {
@@ -65,7 +74,7 @@
   color: lightgreen;
 }
 .navbar {
-  font-family: "Helvetica Neue", Lato, Helvetica, Arial, sans-serif;
+  font-family: courier;
   line-height: 50px;
   font-size: 17px;
   padding: 5px 0;
@@ -121,10 +130,13 @@
   font-weight: 500;
   letter-spacing: 0.75px !important;
   color: lightgreen;
+  margin-left: 100px;
 }
 .levels-list {
   font-weight: 400;
+  font-size: 0.85em;
   letter-spacing: 0.75px !important;
+  margin-left: 100px;
 }
 
 a {
@@ -180,4 +192,14 @@ a:visited {
 .level-title > .title > .label {
   font-weight: 400;
   font-size: 40px !important;
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }

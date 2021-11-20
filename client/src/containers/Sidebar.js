@@ -42,7 +42,7 @@ class Sidebar extends React.Component {
               <div key={idx}>
                 <Link to={`${constants.PATH_LEVEL_ROOT}${level.deployedAddress}`}>
                   <span style={linkStyle}>
-                    {`${idx}. ${level.name}${levelComplete ? ' ✔' : ''}`}
+                    &#8226;&nbsp;{`${level.name}${levelComplete ? ' ✔' : ''}`}
                   </span>
                   { ago < 14 &&
                     <img style={{width: '20px', height: '20px'}} src='../../imgs/new.png' alt='new'/>
