@@ -12,15 +12,14 @@ class Sidebar extends React.Component {
     let strings = loadTranslations(language)
 
     return (
-      <div id="sidebar" style={{
-        padding: '15px 10px'
+      <div id="sidebar" className={"vh-100"} style={{
       }}>
 
         {/* TITLE */}
-        <h4 className="levels-list-title">{strings.uLevels}</h4>
+        <h4 className="">{strings.uLevels}</h4>
 
         {/* LIST */}
-        <div className="levels-list">
+        <div className="">
           {this.props.levels.map((level, idx) => {
 
             // Style

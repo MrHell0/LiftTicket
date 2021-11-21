@@ -30,17 +30,20 @@ class App extends React.Component {
         <Header/>
 
         {/* SPLIT VIEW */}
-        <Sidebar
-          sidebar={<div style={{ width: '300px' }}><SidebarContent/></div>}
-          transitions={false}
-          docked={true}
-          shadow={false}
-          styles={{ root: { top: 62, bottom: 20 }, sidebar: { boxShadow: 'none' }, content: { overflowX: 'hidden' }}}
-        >
-        <div id="main" ref={el => this.childrenElement = el}>
-          {this.props.children}
-        </div>
-        </Sidebar>
+          <div className="row col-md-12">
+
+              <div className="col-lg-2 col-md-3">
+                  <SidebarContent/>
+              </div>
+
+              <div className="col-lg-10 col-md-9">
+                  <div className="row">
+                      <div id="" className={"container-fluid"} ref={el => this.childrenElement = el}>
+                          {this.props.children}
+                      </div>
+                  </div>
+              </div>
+          </div>
 
         {/* FOOTER */}
         <footer className="footer text-center">
