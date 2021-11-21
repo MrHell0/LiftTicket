@@ -32,10 +32,10 @@ help()
 These will be super handy during gameplay.
 
 &nbsp;
-#### 4. The ethernaut contract
+#### 4. The Lift Ticket contract
 Enter the following command in the console:
 ```
-ethernaut
+liftTicket
 ```
 
 This is the game's main smart contract. You don't need to interact with it directly through the console (as this app will do that for you) but you can if you want to. Playing around with this object now is a great way to learn how to interact with the other smart contracts of the game.
@@ -67,7 +67,7 @@ You should be prompted by MetaMask to authorize the transaction. Do so, and you 
 
 &nbsp;
 #### 8. Inspecting the contract
-Just as you did with the ethernaut contract, you can inspect this contract's ABI through the console using the `contract` variable.
+Just as you did with the Lift Ticket contract, you can inspect this contract's ABI through the console using the `contract` variable.
 
 &nbsp;
 #### 9. Interact with the contract to complete the level
@@ -78,7 +78,7 @@ contract.info()
 ###### `await contract.info()` if you're using Chrome v62.
 You should have all you need to complete the level within the contract.
 When you know you have completed the level, submit the contract using the orange button at the bottom of the page.
-This sends your instance back to the ethernaut, which will determine if you have completed it.
+This sends your instance back to the LiftTicket, which will determine if you have completed it.
 
 
 ##### Tip: don't forget that you can always look in the contract's ABI!

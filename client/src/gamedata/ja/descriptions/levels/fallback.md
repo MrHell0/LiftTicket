@@ -7,7 +7,7 @@
 &nbsp;
 このレベルのヒント
 
-- ABI とのやりとりで ether を送信する方法
-- ABI 以外での ether の送り方
-- wei/ether 単位での換算（`help()`コマンド参照）
+- ABI とのやりとりで avax を送信する方法
+- ABI 以外での avax の送り方
+- wei/avax 単位での換算（`help()`コマンド参照）
 - fallback 関数

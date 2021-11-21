@@ -41,4 +41,3 @@ En algunos casos, el estado de la app o directamente Metamask pueden emitir erro
 
 Si lo que ves no tiene mucho sentido prueba a refrescar la app, desabilitando y reabilitando Metamask o reiniciando el browser.
 
-Si sigues teniendo algunos problemas, puedes abrir un issue en nuestro repositorio de Github o bien mandar un mail a ethernaut@zeppelin.solutions.

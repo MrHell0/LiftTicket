@@ -31,4 +31,4 @@ Some levels will require working outside of the browser console. That is, writin
 &nbsp;
 #### Troubleshooting
 Sometimes (a) the app state or (b) the MetaMask plugin state can become a bit messed up, specially after switching networks, unlocking, etc. If what you're seeing doesn't make much sense, try refreshing the app, hard-refreshing it, disabling and re-enabling your metamask plugin or even restarting your browser.
-If you find issues, please let us know at ethernaut@zeppelin.solutions
+

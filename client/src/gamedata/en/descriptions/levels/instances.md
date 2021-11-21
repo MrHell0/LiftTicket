@@ -25,7 +25,7 @@ Keep an eye out for warnings and errors, since they could provide important info
 
 #### 3. Use the console helpers
 
-You can also see your current ether balance by typing:
+You can also see your current avax balance by typing:
 
 ```
 getBalance(player)
@@ -77,7 +77,7 @@ You can see who the owner of the liftTicket contract is, which is not you of cou
 
 To play the game, you will need test AVAX. The easiest way to get some testnet AVAX is via [this faucet](https://faucet.avax-test.network/).
 
-Once you see some ether in your balance, move on to the next step.
+Once you see some avax in your balance, move on to the next step.
 
 &nbsp;
 

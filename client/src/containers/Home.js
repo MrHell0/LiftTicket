@@ -62,7 +62,7 @@ class Home extends React.Component {
                   {/* <div className="title" dangerouslySetInnerHTML={{ __html: strings.title }}></div> */}
                 </div>
               </div>
-              <div>Choose a learning track to start:</div>
+              <div>Choose a learning track:</div>
               <div style={{paddingBottom: '50px', marginTop: '20px', display: 'inline-table', justifyItems: 'baseline'}}>
                 <button
                 className="btn btn-primary"

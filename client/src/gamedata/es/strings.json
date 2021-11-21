@@ -69,6 +69,6 @@
     "helperGetBlockNumber": "obten el numero de bloque actual",
     "helperSendTransaction": "herramienta para el envio de transacciones",
     "helperGetNetworkId": "obten el identificador de la red",
-    "helperToWei": "convierte ether en wei",
-    "helperFromWei": "convierte wei en ether"
+    "helperToWei": "convierte avax en wei",
+    "helperFromWei": "convierte wei en avax"
 }
