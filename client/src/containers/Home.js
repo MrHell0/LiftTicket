@@ -44,14 +44,14 @@ class Home extends React.Component {
     let strings = loadTranslations(language)
     
     return (
-        <div style={{backgroundColor: 'black'}}>
-          <div style={{display: 'flex', marginTop: '10px', alignItems: 'center', justifyContent: 'center'}}>
-            <div>
-              <img src='/imgs/chair3-small.png' alt='' style={{height: '800px', paddingTop: '10px', marginRight: '20px'}}></img>
+        <div className={"mt-5 container-fluid"} style={{backgroundColor: 'black'}}>
+          <div className={"row"}>
+            <div className={"col-md-5"}>
+              <img src='/imgs/chair3-small.png' alt='' className={"ml-5"} width={"100%"}/>
             </div>
-            <div style={{display: 'inline-block', maxWidth: '35%' , textAlign: 'center', paddingTop: '50px', fontWeight: '900'}}>
+            <div className={"col-md-7"}>
               <div style={{display: 'inline-block'}}>
-                <div style={{fontSize: '5em', paddingBottom: '20px'}}>Lift Ticket</div>
+                <h1 className={"display-2 font-weight-bolder"}>Lift Ticket</h1>
                 <div style={{paddingBottom: '20px', fontSize: '3em'}}>
                   <p>Learn DeFi and Web3</p>
                   <p>
