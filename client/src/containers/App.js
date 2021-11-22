@@ -1,5 +1,4 @@
 import React from 'react';
-import Sidebar from 'react-sidebar';
 import Header from './Header';
 import SidebarContent from './Sidebar';
 import { loadTranslations } from '../utils/translations'
