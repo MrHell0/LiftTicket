@@ -55,9 +55,9 @@ class App extends React.Component {
           <div id="" className="container px-0 overflow-x" ref={el => this.childrenElement = el}>
             {this.props.children}
           </div>
-          <div className='navbar navbar-fixed-bottom'>
+          {/* <div className='navbar navbar-fixed-bottom'>
             drop up
-          </div>
+          </div> */}
         </div>
       );
     }

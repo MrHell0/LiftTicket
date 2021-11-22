@@ -94,7 +94,6 @@ class Home extends React.Component {
                   $("body").flurry("destroy");
                   this.destroyScrollArrow();
                   this.props.history.push('/about');
-                  this.navigateToFirstIncompleteLevel();
                 }}
                 >
                   Shadowy Super Coder
