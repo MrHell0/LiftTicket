@@ -5,6 +5,7 @@
 
 body {
   background-color: black;
+  font-family: courier;
 }
 
 #root > [data-reactroot] {
@@ -198,8 +199,38 @@ a:visited {
   animation: blinker 1s linear infinite;
 }
 
+.blink_slow {
+  animation: blinker 4s linear infinite;
+}
+
 @keyframes blinker {
   50% {
     opacity: 0;
+  }
+}
+
+.arrow {
+  text-align: center;
+  margin: 2% 0;
+}
+.bounce {
+  -moz-animation: bounce 3s infinite;
+  -webkit-animation: bounce 3s infinite;
+  animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-8px);
   }
 }

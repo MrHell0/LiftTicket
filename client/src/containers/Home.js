@@ -9,12 +9,13 @@ import initFlurry from '../utils/flurry';
 
 initFlurry();
 
-const doFlurry = () => $('body').flurry({ height: 600, speed: 25000, large: 16 });
+const doFlurry = (height) => $('body').flurry({ height: height - 10, speed: 25000, large: 16 });
 
 class Home extends React.Component {
 
   componentDidMount() {
-      doFlurry();
+    const { innerHeight: height } = window;
+    doFlurry(height);
   }
 
   navigateToFirstIncompleteLevel() {
@@ -44,30 +45,34 @@ class Home extends React.Component {
     let strings = loadTranslations(language)
     
     return (
-        <div className={"mt-5 container-fluid"} style={{backgroundColor: 'black'}}>
-          <div className={"row"}>
-            <div className={"col-md-5"}>
+        <div className={"mt-5 container-fluid d-flex justify-content-center"} style={{backgroundColor: 'black'}}>
+          <div className='d-lg-inline-flex d-md-flex'>
+            <div className="col-lg-5 col-lg-5 pb-5"> 
               <img src='/imgs/chair3-small.png' alt='' className={"ml-5"} width={"100%"}/>
             </div>
-            <div className={"col-md-7"}>
-              <div style={{display: 'inline-block'}}>
-                <h1 className={"display-2 font-weight-bolder"}>Lift Ticket</h1>
-                <div style={{paddingBottom: '20px', fontSize: '3em'}}>
+            <div className={"col-md-5 text-center"}>
+              <div className={'d-flex-column text-center'}>
+                <h1 className={"display-2 fw-bolder pt-3"}>LIFT TICKET</h1>
+                <div className='pb-5 sm-fs-5 fs-3'>
                   <p>Learn DeFi and Web3</p>
                   <p>
-                    on
-                    <img src="/imgs/avalanche-avax-logo.svg" style={{height: '30px', paddingLeft: '15px', paddingRight: '15px'}} alt=""></img> 
-                  <a href="https://avax.network" target="blank">Avalanche</a>
+                      on
+                      <img src="/imgs/avalanche-avax-logo.svg" style={{height: '30px', paddingLeft: '15px', paddingRight: '15px'}} alt=""></img> 
+                      Avalanche
+                      <div className="arrow blink_slow d-md-none pt-2">
+                        <a className="fa fa-arrow-down fa-1x" href="#choose" style={{textDecoration: 'none'}}>&nbsp;</a>
+                      </div>
                   </p>
                   {/* <div className="title" dangerouslySetInnerHTML={{ __html: strings.title }}></div> */}
                 </div>
               </div>
-              <div>Choose a learning track:</div>
+              <div id="choose" className='fs-4'>Choose a learning track:</div>
               <div style={{paddingBottom: '50px', marginTop: '20px', display: 'inline-table', justifyItems: 'baseline'}}>
                 <button
                 className="btn btn-primary"
                 onClick={() => {
                   $("body").flurry("destroy");
+                  this.props.history.push('/about');
                   this.navigateToFirstIncompleteLevel();
                 }}
                 >
@@ -78,10 +83,10 @@ class Home extends React.Component {
                   <div>
                   <button
                     style={{marginLeft: '10px', paddingLeft: '70px', paddingRight: '70px'}}
-                    className="btn btn-primary"
+                    className="btn btn-primary opacity-75"
                     onClick={() => {
-                      $("body").flurry("destroy");
-                      this.navigateToFirstIncompleteLevel()
+                      ;
+                      //this.navigateToFirstIncompleteLevel()
                     }}>
                     DeFi Degen
                   </button>
@@ -97,7 +102,7 @@ class Home extends React.Component {
                 A Shadowy Super Coder Club production <br />
                 Artwork by <a href='https://twitter.com/MarvinParadox' target='_blank'rel="noopener noreferrer">@MarvinParadox</a></p>
               </div>   */}
-            <div style={{marginTop: '50px'}}>A Shadowy Super Coder Club production</div>
+            <div style={{marginTop: '50px'}} className='fs-5 pb-4'>A Shadowy Super Coder Club production</div>
             </div>
             
           </div>

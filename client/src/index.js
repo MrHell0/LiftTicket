@@ -5,7 +5,7 @@ import { store, history } from './store';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Router, Route, Switch } from 'react-router';
 import * as ethutil from './utils/ethutil'
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/app.css';
 import * as actions from '../src/actions';
 import * as constants from '../src/constants';
