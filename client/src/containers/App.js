@@ -13,7 +13,8 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(`location is ${this.props.location}`)
+    const { innerWidth: width } = window;
+    
     if (this.props.location.pathname === '/') {
       return (
       <>
@@ -24,32 +25,42 @@ class App extends React.Component {
 
     let language = localStorage.getItem('lang')
     let strings = loadTranslations(language)
-    return (
-      <div style={{ fontFamily: 'courier, Lato, sans-serif', color: 'white', background: 'black'}}>
-        <Header/>
+    if (width > 768) {
+      return (
+        <div style={{ fontFamily: 'courier', color: 'white', background: 'black'}}>
+          <Header/>
 
-        {/* SPLIT VIEW */}
+          {/* SPLIT VIEW */}
+
           <div className="row col-md-12">
-
-              <div className="col-lg-2 col-md-3">
-                  <SidebarContent/>
+            <div className="col-md-2">
+              <SidebarContent/>
+            </div>
+            <div className="col-lg-10 col-md-9 overflow-x">
+              <div id="" className="container-fluid px-0" ref={el => this.childrenElement = el}>
+                {this.props.children}
               </div>
-
-              <div className="col-lg-10 col-md-9">
-                  <div className="row">
-                      <div id="" className={"container-fluid"} ref={el => this.childrenElement = el}>
-                          {this.props.children}
-                      </div>
-                  </div>
-              </div>
+            </div>
           </div>
+          <footer className="footer text-center">
+            <div dangerouslySetInnerHTML={{ __html: strings.footer }}></div>
+          </footer>
+        </div>
+      );
 
-        {/* FOOTER */}
-        <footer className="footer text-center">
-          <div dangerouslySetInnerHTML={{ __html: strings.footer }}></div>
-        </footer>
-      </div>
-    );
+    } else {
+    return (
+        <div style={{ fontFamily: 'courier', color: 'white', background: 'black'}} className='container-fluid px-0'>
+          <Header/>
+          <div id="" className="container px-0 overflow-x" ref={el => this.childrenElement = el}>
+            {this.props.children}
+          </div>
+          <div className='navbar navbar-fixed-bottom'>
+            drop up
+          </div>
+        </div>
+      );
+    }
   }
 }
 

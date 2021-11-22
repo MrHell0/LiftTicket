@@ -24,15 +24,18 @@ class Home extends React.Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
-  arrowVisible = true;
-  nav = React.createRef();
-  
-  handleScroll = () => {
+  destroyScrollArrow = () => {
     if (this.arrowVisible) {
       this.nav.current.style.display = 'none';
       window.removeEventListener('scroll', this.handleScroll);
       this.arrowVisible = false;
     }
+  }
+  arrowVisible = true;
+  nav = React.createRef();
+  
+  handleScroll = () => {
+    this.destroyScrollArrow()
   };
   
   navigateToFirstIncompleteLevel() {
@@ -89,6 +92,7 @@ class Home extends React.Component {
                 className="btn btn-primary"
                 onClick={() => {
                   $("body").flurry("destroy");
+                  this.destroyScrollArrow();
                   this.props.history.push('/about');
                   this.navigateToFirstIncompleteLevel();
                 }}
