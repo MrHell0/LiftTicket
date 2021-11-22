@@ -16,8 +16,25 @@ class Home extends React.Component {
   componentDidMount() {
     const { innerHeight: height } = window;
     doFlurry(height);
+    window.addEventListener('scroll', this.handleScroll, true);
   }
 
+
+  componentDidUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  arrowVisible = true;
+  nav = React.createRef();
+  
+  handleScroll = () => {
+    if (this.arrowVisible) {
+      this.nav.current.style.display = 'none';
+      window.removeEventListener('scroll', this.handleScroll);
+      this.arrowVisible = false;
+    }
+  };
+  
   navigateToFirstIncompleteLevel() {
 
     // Find first incomplete level
@@ -59,7 +76,7 @@ class Home extends React.Component {
                       on
                       <img src="/imgs/avalanche-avax-logo.svg" style={{height: '30px', paddingLeft: '15px', paddingRight: '15px'}} alt=""></img> 
                       Avalanche
-                      <div className="arrow blink_slow d-md-none pt-2">
+                      <div className="arrow blink_slow d-md-none pt-2" ref={this.nav}>
                         <a className="fa fa-arrow-down fa-1x" href="#choose" style={{textDecoration: 'none'}}>&nbsp;</a>
                       </div>
                   </p>
